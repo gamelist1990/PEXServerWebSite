@@ -15,5 +15,12 @@ export const staffMembers: StaffMember[] = [
     icon: `${import.meta.env.BASE_URL}Staff/koukunn.png`,
     youtubeUrl: "https://www.youtube.com/@PEXkoukunn",
     xUrl: "https://x.com/PEXkoukunn"
+  },
+  {
+    id: "sunsun",
+    name: "さんさん",
+    message: "よろしく",
+    icon: `${import.meta.env.BASE_URL}Staff/sunsun.png`,
+    xUrl: "https://x.com/sunsun33_33?s=21"
   }
 ];
