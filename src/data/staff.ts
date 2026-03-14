@@ -20,7 +20,7 @@ export const staffMembers: StaffMember[] = [
     id: "sunsun",
     name: "さんさん",
     message: "よろしく",
-    icon: `${import.meta.env.BASE_URL}Staff/sunsun.png`,
+    icon: `${import.meta.env.BASE_URL}Staff/sunsun.jpg`,
     xUrl: "https://x.com/sunsun33_33?s=21"
   }
 ];
