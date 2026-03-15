@@ -30,5 +30,12 @@ export const staffMembers: StaffMember[] = [
     icon: `${import.meta.env.BASE_URL}Staff/taijao.jpg`,
     youtubeUrl: "https://www.youtube.com/@taijaopvp",
     xUrl: "https://x.com/taijaopvp114514"
+  },
+  {
+    id: "yx55407",
+    name: "yx5",
+    message: "よろしく！",
+    icon: `${import.meta.env.BASE_URL}Staff/yx.jpg`,
+    youtubeUrl: "https://youtube.com/@yx5-8639?si=4XoaFdYQn5m20SoG"
   } 
 ];
