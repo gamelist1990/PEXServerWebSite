@@ -13,6 +13,9 @@ export function MinecraftSoundPage() {
   const [previewVolume, setPreviewVolume] = useState(100);
   const [previewPitch, setPreviewPitch] = useState(100);
 
+  const previewAudioVolume = Math.min(Math.max(previewVolume / 100, 0), 1);
+  const previewAudioPitch = Math.min(Math.max(previewPitch / 100, 0.5), 2);
+
   useEffect(() => {
     let mounted = true;
 
@@ -61,9 +64,9 @@ export function MinecraftSoundPage() {
       return;
     }
 
-    audio.volume = previewVolume / 100;
-    audio.playbackRate = previewPitch / 100;
-  }, [previewPitch, previewVolume]);
+    audio.volume = previewAudioVolume;
+    audio.playbackRate = previewAudioPitch;
+  }, [previewAudioPitch, previewAudioVolume]);
 
   useEffect(() => {
     if (statusMessage === "待機中") {
@@ -116,8 +119,8 @@ export function MinecraftSoundPage() {
     audio.pause();
     audio.src = entry.previewUrl;
     audio.currentTime = 0;
-    audio.volume = previewVolume / 100;
-    audio.playbackRate = previewPitch / 100;
+    audio.volume = previewAudioVolume;
+    audio.playbackRate = previewAudioPitch;
 
     try {
       await audio.play();
