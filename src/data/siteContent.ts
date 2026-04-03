@@ -1,4 +1,5 @@
 import { bedrockTextureCount } from "./generated/bedrockTextureMeta";
+import { minecraftSoundAssetVersion } from "./generated/minecraftSoundMeta";
 import { SERVER_ADDRESS } from "../app/constants";
 import type { FeatureCard, GuideStep, ToolCard } from "../app/types";
 
@@ -27,6 +28,13 @@ export const toolCards: ToolCard[] = [
     body: "Bedrock vanilla のテクスチャを検索して、`Icon.XXXX` や texture path をその場でコピーできます。",
     to: "/tools/bedrock-textures",
     metric: `${bedrockTextureCount} textures`
+  },
+  {
+    eyebrow: "Audio Tool",
+    title: "Minecraft Sound Explorer",
+    body: "vanilla のサウンドキーを検索して、その場で再生しながら `minecraft:...` や `/playsound` を確認できます。",
+    to: "/tools/sounds",
+    metric: `${minecraftSoundAssetVersion} live data`
   }
 ];
 

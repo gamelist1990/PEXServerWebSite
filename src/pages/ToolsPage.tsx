@@ -7,7 +7,7 @@ export function ToolsPage() {
       <section className="panel section-hero">
         <p className="eyebrow">Tools</p>
         <h2>開発や運用に使えるツール集</h2>
-        <p className="section-text">今後このページにツールを増やしていけるよう、一覧から選んで使える形にしています。最初の 1 つとして Bedrock Texture Explorer を追加しています。</p>
+        <p className="section-text">用途ごとに一覧から選んで使えるようにしています。テクスチャ確認用の Explorer に加えて、PlaySound の確認をしやすくする Sound Explorer も追加しています。</p>
       </section>
 
       <section className="tool-grid">

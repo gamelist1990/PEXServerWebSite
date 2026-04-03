@@ -4,6 +4,7 @@ import { AboutPage } from "./pages/AboutPage";
 import { BedrockTexturePage } from "./pages/BedrockTexturePage";
 import { GuidePage } from "./pages/GuidePage";
 import { HomePage } from "./pages/HomePage";
+import { MinecraftSoundPage } from "./pages/MinecraftSoundPage";
 import { StaffPage } from "./pages/StaffPage";
 import { StatusPage } from "./pages/StatusPage";
 import { ToolsPage } from "./pages/ToolsPage";
@@ -32,6 +33,7 @@ function AppLayout() {
             <Route path="/guide" element={<GuidePage />} />
             <Route path="/tools" element={<ToolsPage />} />
             <Route path="/tools/bedrock-textures" element={<BedrockTexturePage />} />
+            <Route path="/tools/sounds" element={<MinecraftSoundPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/staff" element={<StaffPage />} />
           </Routes>

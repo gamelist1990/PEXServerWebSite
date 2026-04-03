@@ -42,3 +42,37 @@ export type BedrockTextureEntry = {
   asset: string;
   webAsset: string;
 };
+
+export type MinecraftSoundVariant =
+  | string
+  | {
+      name: string;
+      type?: string;
+      stream?: boolean;
+      volume?: number;
+      pitch?: number;
+      weight?: number;
+      preload?: boolean;
+      attenuation_distance?: number;
+    };
+
+export type MinecraftSoundDefinition = {
+  sounds?: MinecraftSoundVariant[];
+  subtitle?: string;
+  replace?: boolean;
+};
+
+export type MinecraftLanguageMap = Record<string, string>;
+
+export type MinecraftSoundEntry = {
+  key: string;
+  namespacedKey: string;
+  category: string;
+  subtitleKey?: string;
+  subtitle?: string;
+  previewPath?: string;
+  previewUrl?: string;
+  sampleCount: number;
+  hasNestedEvent: boolean;
+  stream: boolean;
+};
