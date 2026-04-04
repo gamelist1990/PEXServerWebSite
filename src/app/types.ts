@@ -64,9 +64,13 @@ export type MinecraftSoundDefinition = {
 
 export type MinecraftLanguageMap = Record<string, string>;
 
+export type SoundEdition = "java" | "bedrock";
+
 export type MinecraftSoundEntry = {
+  edition: SoundEdition;
   key: string;
-  namespacedKey: string;
+  commandKey: string;
+  namespacedKey?: string;
   category: string;
   subtitleKey?: string;
   subtitle?: string;
@@ -75,4 +79,35 @@ export type MinecraftSoundEntry = {
   sampleCount: number;
   hasNestedEvent: boolean;
   stream: boolean;
+};
+
+export type BedrockSoundVariant =
+  | string
+  | {
+      name: string;
+      load_on_low_memory?: boolean;
+      pitch?: number;
+      volume?: number;
+      weight?: number;
+    };
+
+export type BedrockSoundDefinition = {
+  category?: string;
+  max_distance?: number | null;
+  min_distance?: number | null;
+  sounds?: BedrockSoundVariant[];
+  subtitle?: string;
+  __use_legacy_max_distance?: string;
+};
+
+export type BedrockSoundDefinitionDocument = {
+  format_version?: string;
+  sound_definitions: Record<string, BedrockSoundDefinition>;
+};
+
+export type BedrockVersionInfo = {
+  latest?: {
+    version: string;
+    date: string;
+  };
 };

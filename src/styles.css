@@ -616,6 +616,36 @@ code {
   gap: 16px;
 }
 
+.sound-select-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.sound-select {
+  display: grid;
+  gap: 8px;
+  min-width: min(280px, 100%);
+}
+
+.sound-select span {
+  color: var(--muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+}
+
+.sound-select select {
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1px solid rgba(23, 23, 23, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.64);
+  color: var(--ink);
+  font: inherit;
+}
+
 .texture-search,
 .texture-export-box {
   width: 100%;
@@ -863,6 +893,14 @@ code {
 .sound-preview-audio {
   width: 100%;
   margin-top: 16px;
+}
+
+.sound-bedrock-note {
+  margin-top: 16px;
+  padding: 18px;
+  border-radius: 20px;
+  border: 1px solid rgba(23, 23, 23, 0.08);
+  background: rgba(255, 255, 255, 0.52);
 }
 
 .guide-step-card {

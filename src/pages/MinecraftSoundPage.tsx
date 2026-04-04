@@ -1,17 +1,34 @@
 import { useEffect, useRef, useState } from "react";
-import type { MinecraftLanguageMap, MinecraftSoundDefinition, MinecraftSoundEntry } from "../app/types";
-import { minecraftSoundAssetVersion, minecraftSoundDataUrl, minecraftSoundLanguageUrl } from "../data/generated/minecraftSoundMeta";
-import { buildMinecraftSoundEntries } from "../features/minecraft-sounds/normalize";
+import type {
+  BedrockSoundDefinitionDocument,
+  BedrockVersionInfo,
+  MinecraftLanguageMap,
+  MinecraftSoundDefinition,
+  MinecraftSoundEntry,
+  SoundEdition
+} from "../app/types";
+import {
+  bedrockSoundDefinitionsUrl,
+  bedrockVersionInfoUrl,
+  minecraftSoundAssetVersion,
+  minecraftSoundDataUrl,
+  minecraftSoundLanguageUrl
+} from "../data/generated/minecraftSoundMeta";
+import { buildBedrockSoundEntries, buildMinecraftSoundEntries } from "../features/minecraft-sounds/normalize";
 
 export function MinecraftSoundPage() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const [entries, setEntries] = useState<MinecraftSoundEntry[]>([]);
+  const [javaEntries, setJavaEntries] = useState<MinecraftSoundEntry[]>([]);
+  const [bedrockEntries, setBedrockEntries] = useState<MinecraftSoundEntry[]>([]);
+  const [edition, setEdition] = useState<SoundEdition>("java");
   const [loadingEntries, setLoadingEntries] = useState(true);
   const [query, setQuery] = useState("");
   const [selectedEntry, setSelectedEntry] = useState<MinecraftSoundEntry | null>(null);
   const [statusMessage, setStatusMessage] = useState("待機中");
   const [previewVolume, setPreviewVolume] = useState(100);
   const [previewPitch, setPreviewPitch] = useState(100);
+  const [javaSource, setJavaSource] = useState("master");
+  const [bedrockVersionLabel, setBedrockVersionLabel] = useState("Loading...");
 
   const previewAudioVolume = Math.min(Math.max(previewVolume / 100, 0), 1);
   const previewAudioPitch = Math.min(Math.max(previewPitch / 100, 0.5), 2);
@@ -21,24 +38,35 @@ export function MinecraftSoundPage() {
 
     const loadEntries = async () => {
       try {
-        const [soundResponse, languageResponse] = await Promise.all([
+        const [soundResponse, languageResponse, bedrockResponse, bedrockVersionResponse] = await Promise.all([
           fetch(minecraftSoundDataUrl, { cache: "no-store" }),
-          fetch(minecraftSoundLanguageUrl, { cache: "no-store" })
+          fetch(minecraftSoundLanguageUrl, { cache: "no-store" }),
+          fetch(bedrockSoundDefinitionsUrl, { cache: "no-store" }),
+          fetch(bedrockVersionInfoUrl, { cache: "no-store" })
         ]);
 
-        if (!soundResponse.ok || !languageResponse.ok) {
-          throw new Error(`HTTP ${soundResponse.status} / ${languageResponse.status}`);
+        if (!soundResponse.ok || !languageResponse.ok || !bedrockResponse.ok || !bedrockVersionResponse.ok) {
+          throw new Error(
+            `HTTP ${soundResponse.status} / ${languageResponse.status} / ${bedrockResponse.status} / ${bedrockVersionResponse.status}`
+          );
         }
 
         const definitions = (await soundResponse.json()) as Record<string, MinecraftSoundDefinition>;
         const languageMap = (await languageResponse.json()) as MinecraftLanguageMap;
-        const normalizedEntries = buildMinecraftSoundEntries(definitions, languageMap);
+        const bedrockDocument = (await bedrockResponse.json()) as BedrockSoundDefinitionDocument;
+        const bedrockVersionInfo = (await bedrockVersionResponse.json()) as BedrockVersionInfo;
+        const normalizedJavaEntries = buildMinecraftSoundEntries(definitions, languageMap);
+        const normalizedBedrockEntries = buildBedrockSoundEntries(bedrockDocument, languageMap);
 
         if (!mounted) {
           return;
         }
 
-        setEntries(normalizedEntries);
+        setJavaEntries(normalizedJavaEntries);
+        setBedrockEntries(normalizedBedrockEntries);
+        if (bedrockVersionInfo.latest?.version) {
+          setBedrockVersionLabel(bedrockVersionInfo.latest.version);
+        }
       } catch {
         if (!mounted) {
           return;
@@ -77,6 +105,12 @@ export function MinecraftSoundPage() {
     return () => window.clearTimeout(timer);
   }, [statusMessage]);
 
+  useEffect(() => {
+    setSelectedEntry(null);
+  }, [edition]);
+
+  const entries = edition === "java" ? javaEntries : bedrockEntries;
+
   const filteredEntries = query.trim()
     ? entries.filter((entry) => {
         const searchText = [
@@ -111,7 +145,7 @@ export function MinecraftSoundPage() {
       return;
     }
 
-    if (!entry.previewUrl) {
+        if (!entry.previewUrl) {
       setStatusMessage("このサウンドは直接プレビューできません");
       return;
     }
@@ -132,7 +166,11 @@ export function MinecraftSoundPage() {
 
   const handleSelect = (entry: MinecraftSoundEntry) => {
     setSelectedEntry(entry);
-    void playEntry(entry);
+    if (entry.edition === "java") {
+      void playEntry(entry);
+      return;
+    }
+    setStatusMessage(`${entry.commandKey} を選択しました`);
   };
 
   const handleStop = () => {
@@ -147,7 +185,9 @@ export function MinecraftSoundPage() {
   };
 
   const commandSample = selectedEntry
-    ? `/playsound ${selectedEntry.namespacedKey} master @s ~ ~ ~ ${(previewVolume / 100).toFixed(2)} ${(previewPitch / 100).toFixed(2)}`
+    ? selectedEntry.edition === "java"
+      ? `/playsound ${selectedEntry.commandKey} ${javaSource} @s ~ ~ ~ ${(previewVolume / 100).toFixed(2)} ${(previewPitch / 100).toFixed(2)}`
+      : `/playsound ${selectedEntry.commandKey} @s ~ ~ ~ ${(previewVolume / 100).toFixed(2)} ${(previewPitch / 100).toFixed(2)} 0.00`
     : "";
 
   return (
@@ -156,20 +196,55 @@ export function MinecraftSoundPage() {
         <p className="eyebrow">Tools / Minecraft Sound Explorer</p>
         <h2>Minecraft Sound Explorer</h2>
         <p className="section-text">
-          vanilla の <strong>sounds.json</strong> をもとにしたサウンド一覧です。検索しながらその場で再生し、<strong>minecraft:...</strong> や
-          <strong> /playsound</strong> の形でコピーできます。
+          Java と Bedrock を切り替えながら、各 Edition のサウンドイベント名と <strong>/playsound</strong> 構文を別々に確認できます。
+          Java 側はその場でプレビュー再生、Bedrock 側は <strong>sound_definitions.json</strong> 基準でイベント名を確認できます。
         </p>
       </section>
 
       <section className="panel sound-control-panel">
         <div className="sound-toolbar">
+          <div className="texture-action-row">
+            <button
+              className={edition === "java" ? "secondary-button is-selected-button" : "secondary-button"}
+              onClick={() => setEdition("java")}
+              type="button"
+            >
+              Java Edition
+            </button>
+            <button
+              className={edition === "bedrock" ? "secondary-button is-selected-button" : "secondary-button"}
+              onClick={() => setEdition("bedrock")}
+              type="button"
+            >
+              Bedrock Edition
+            </button>
+          </div>
           <input
             className="texture-search"
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="sound key / subtitle / path で検索"
+            placeholder={edition === "java" ? "sound key / subtitle / path で検索" : "bedrock sound key / subtitle / path で検索"}
             type="search"
             value={query}
           />
+          {edition === "java" ? (
+            <div className="sound-select-row">
+              <label className="sound-select">
+                <span>Java Source</span>
+                <select onChange={(event) => setJavaSource(event.target.value)} value={javaSource}>
+                  <option value="master">master</option>
+                  <option value="music">music</option>
+                  <option value="record">record</option>
+                  <option value="weather">weather</option>
+                  <option value="block">block</option>
+                  <option value="hostile">hostile</option>
+                  <option value="neutral">neutral</option>
+                  <option value="player">player</option>
+                  <option value="ambient">ambient</option>
+                  <option value="voice">voice</option>
+                </select>
+              </label>
+            </div>
+          ) : null}
           <div className="texture-action-row">
             <button
               className="primary-button"
@@ -179,7 +254,7 @@ export function MinecraftSoundPage() {
                   return;
                 }
 
-                void handleCopy(selectedEntry.namespacedKey, `${selectedEntry.namespacedKey} をコピーしました`);
+                void handleCopy(selectedEntry.commandKey, `${selectedEntry.commandKey} をコピーしました`);
               }}
               type="button"
             >
@@ -207,6 +282,11 @@ export function MinecraftSoundPage() {
                   return;
                 }
 
+                if (selectedEntry.edition !== "java") {
+                  setStatusMessage("Bedrock 側はブラウザ再生に未対応です");
+                  return;
+                }
+
                 void playEntry(selectedEntry);
               }}
               type="button"
@@ -223,7 +303,7 @@ export function MinecraftSoundPage() {
       <section className="sound-stats-grid">
         <div className="spotlight-item">
           <span>Version</span>
-          <strong>{minecraftSoundAssetVersion}</strong>
+          <strong>{edition === "java" ? minecraftSoundAssetVersion : bedrockVersionLabel}</strong>
         </div>
         <div className="spotlight-item">
           <span>Total</span>
@@ -243,7 +323,7 @@ export function MinecraftSoundPage() {
         <div className="sound-preview-header">
           <div>
             <p className="panel-label">Preview</p>
-            <h2>{selectedEntry ? selectedEntry.namespacedKey : "サウンドを選択してください"}</h2>
+            <h2>{selectedEntry ? selectedEntry.commandKey : "サウンドを選択してください"}</h2>
           </div>
           <div className="sound-badge-row">
             <span className="sound-chip">{selectedEntry?.category ?? "category"}</span>
@@ -256,6 +336,10 @@ export function MinecraftSoundPage() {
 
         <div className="sound-detail-grid">
           <div className="sound-detail-card">
+            <span>Edition</span>
+            <strong>{selectedEntry?.edition === "bedrock" ? "Bedrock Edition" : "Java Edition"}</strong>
+          </div>
+          <div className="sound-detail-card">
             <span>Subtitle</span>
             <strong>{selectedEntry?.subtitle ?? selectedEntry?.subtitleKey ?? "なし"}</strong>
           </div>
@@ -267,10 +351,17 @@ export function MinecraftSoundPage() {
             <span>Variants</span>
             <strong>{selectedEntry ? selectedEntry.sampleCount : 0}</strong>
           </div>
-          <div className="sound-detail-card">
-            <span>Nested Event</span>
-            <strong>{selectedEntry?.hasNestedEvent ? "あり" : "なし"}</strong>
-          </div>
+          {selectedEntry?.edition === "java" ? (
+            <div className="sound-detail-card">
+              <span>Nested Event</span>
+              <strong>{selectedEntry.hasNestedEvent ? "あり" : "なし"}</strong>
+            </div>
+          ) : (
+            <div className="sound-detail-card">
+              <span>Command Rule</span>
+              <strong>Bedrock は source 指定なし</strong>
+            </div>
+          )}
         </div>
 
         <textarea className="texture-export-box" readOnly value={commandSample} />
@@ -298,7 +389,16 @@ export function MinecraftSoundPage() {
           </label>
         </div>
 
-        <audio className="sound-preview-audio" controls ref={audioRef} />
+        {edition === "java" ? (
+          <audio className="sound-preview-audio" controls ref={audioRef} />
+        ) : (
+          <div className="sound-bedrock-note">
+            <p className="section-text">
+              Bedrock 側は Mojang の <strong>sound_definitions.json</strong> を参照してイベント名を出しています。現状の公式公開元には
+              直接再生用の音声ファイル一式がないため、ここではコマンド確認を優先しています。
+            </p>
+          </div>
+        )}
       </section>
 
       <section className="sound-grid">
@@ -310,11 +410,11 @@ export function MinecraftSoundPage() {
           </div>
         ) : null}
         {filteredEntries.map((entry) => {
-          const isSelected = selectedEntry?.namespacedKey === entry.namespacedKey;
+          const isSelected = selectedEntry?.edition === entry.edition && selectedEntry?.key === entry.key;
           return (
             <button
               className={isSelected ? "sound-card is-selected" : "sound-card"}
-              key={entry.namespacedKey}
+              key={`${entry.edition}:${entry.key}`}
               onClick={() => handleSelect(entry)}
               type="button"
             >
@@ -327,7 +427,7 @@ export function MinecraftSoundPage() {
                 <code className="texture-asset-code">{entry.previewPath ?? "preview unavailable"}</code>
                 <div className="sound-card-meta">
                   <span>{entry.sampleCount} variants</span>
-                  <span>{entry.previewUrl ? "preview ok" : "event only"}</span>
+                  <span>{entry.edition === "java" ? (entry.previewUrl ? "preview ok" : "event only") : "bedrock key"}</span>
                 </div>
               </div>
             </button>
