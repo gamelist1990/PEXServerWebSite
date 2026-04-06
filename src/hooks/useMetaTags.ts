@@ -54,7 +54,13 @@ export function useMetaTags(config: MetaTagsConfig) {
     }
 
     if (config.ogImage) {
-      updateMetaTag('og:image', config.ogImage);
+      // Resolve relative paths using BASE_URL to fix the algorithm for fetching images
+      const resolvedImagePath = config.ogImage.startsWith('./')
+        ? `${window.location.origin}${import.meta.env.BASE_URL}${config.ogImage.slice(2)}`
+        : config.ogImage.startsWith('http')
+        ? config.ogImage
+        : `${window.location.origin}${import.meta.env.BASE_URL}${config.ogImage}`;
+      updateMetaTag('og:image', resolvedImagePath);
     }
 
     // Update Twitter card
