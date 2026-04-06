@@ -3,8 +3,11 @@ import { NavLink } from "react-router-dom";
 import { DISCORD_INVITE_URL, SERVER_ADDRESS } from "../app/constants";
 import { SpotlightItem } from "../components/common/SpotlightItem";
 import { featureCards } from "../data/siteContent";
+import { useMetaTags } from "../hooks/useMetaTags";
+import { pageMetadata } from "../data/pageMetadata";
 
 export function HomePage() {
+  useMetaTags(pageMetadata['/']);
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {

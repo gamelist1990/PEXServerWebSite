@@ -1,7 +1,10 @@
 import { NavLink } from "react-router-dom";
 import { toolCards } from "../data/siteContent";
+import { useMetaTags } from "../hooks/useMetaTags";
+import { pageMetadata } from "../data/pageMetadata";
 
 export function ToolsPage() {
+  useMetaTags(pageMetadata['/tools']);
   return (
     <section className="page-grid">
       <section className="panel section-hero">

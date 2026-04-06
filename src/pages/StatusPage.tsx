@@ -1,8 +1,11 @@
 import { BEDROCK_STATUS_ENDPOINT, JAVA_STATUS_ENDPOINT, SERVER_ADDRESS } from "../app/constants";
 import { StatusCard } from "../components/status/StatusCard";
 import { useServerStatus } from "../hooks/useServerStatus";
+import { useMetaTags } from "../hooks/useMetaTags";
+import { pageMetadata } from "../data/pageMetadata";
 
 export function StatusPage() {
+  useMetaTags(pageMetadata['/status']);
   const javaStatus = useServerStatus(JAVA_STATUS_ENDPOINT);
   const bedrockStatus = useServerStatus(BEDROCK_STATUS_ENDPOINT);
 

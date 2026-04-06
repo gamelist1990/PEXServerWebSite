@@ -1,7 +1,10 @@
 import { SocialIcon } from "../components/common/SocialIcon";
 import { staffMembers } from "../data/staff";
+import { useMetaTags } from "../hooks/useMetaTags";
+import { pageMetadata } from "../data/pageMetadata";
 
 export function StaffPage() {
+  useMetaTags(pageMetadata['/staff']);
   return (
     <section className="page-grid">
       <section className="panel section-hero">
