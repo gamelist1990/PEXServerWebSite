@@ -1,4 +1,4 @@
-import { HashRouter, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { SiteHeader } from "./components/layout/SiteHeader";
 import { AboutPage } from "./pages/AboutPage";
 import { BedrockTexturePage } from "./pages/BedrockTexturePage";
@@ -11,9 +11,9 @@ import { ToolsPage } from "./pages/ToolsPage";
 
 function App() {
   return (
-    <HashRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <AppLayout />
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
