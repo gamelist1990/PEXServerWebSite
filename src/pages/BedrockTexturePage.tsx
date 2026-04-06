@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 import type { BedrockTextureEntry } from "../app/types";
 import { bedrockTextureCount, bedrockTextureDataPath } from "../data/generated/bedrockTextureMeta";
 import { buildJavaExport, buildTsExport } from "../features/bedrock-textures/exporters";
+import { useMetaTags } from "../hooks/useMetaTags";
+import { pageMetadata } from "../data/pageMetadata";
 
 export function BedrockTexturePage() {
+  useMetaTags(pageMetadata['/tools/bedrock-textures']);
   const [entries, setEntries] = useState<BedrockTextureEntry[]>([]);
   const [loadingEntries, setLoadingEntries] = useState(true);
   const [query, setQuery] = useState("");

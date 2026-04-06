@@ -1,8 +1,11 @@
 import { DISCORD_INVITE_URL, SERVER_ADDRESS } from "../app/constants";
 import { GuideStepCard } from "../components/common/GuideStepCard";
 import { bedrockFriendAddSteps, bedrockServerAddSteps, javaJoinSteps } from "../data/siteContent";
+import { useMetaTags } from "../hooks/useMetaTags";
+import { pageMetadata } from "../data/pageMetadata";
 
 export function GuidePage() {
+  useMetaTags(pageMetadata['/guide']);
   return (
     <section className="page-grid">
       <section className="panel section-hero">

@@ -1,6 +1,9 @@
 import { featureCards } from "../data/siteContent";
+import { useMetaTags } from "../hooks/useMetaTags";
+import { pageMetadata } from "../data/pageMetadata";
 
 export function AboutPage() {
+  useMetaTags(pageMetadata['/about']);
   return (
     <section className="page-grid">
       <section className="panel section-hero">

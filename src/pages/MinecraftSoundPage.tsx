@@ -15,8 +15,11 @@ import {
   minecraftSoundLanguageUrl
 } from "../data/generated/minecraftSoundMeta";
 import { buildBedrockSoundEntries, buildMinecraftSoundEntries } from "../features/minecraft-sounds/normalize";
+import { useMetaTags } from "../hooks/useMetaTags";
+import { pageMetadata } from "../data/pageMetadata";
 
 export function MinecraftSoundPage() {
+  useMetaTags(pageMetadata['/tools/sounds']);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [javaEntries, setJavaEntries] = useState<MinecraftSoundEntry[]>([]);
   const [bedrockEntries, setBedrockEntries] = useState<MinecraftSoundEntry[]>([]);
