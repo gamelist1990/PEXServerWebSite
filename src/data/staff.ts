@@ -50,7 +50,7 @@ export const staffMembers: StaffMember[] = [
     id: "Lupalupadayo",
     name: "ルパー",
     message: "よろだよー 鳴潮復帰したぜ( ✌︎'ω')✌︎",
-    icon: `${import.meta.env.BASE_URL}Staff/lupa.png`,
+    icon: `${import.meta.env.BASE_URL}Staff/lupa.jpg`,
     xUrl: "https://x.com/lupalupanannda"
   }
 ];
