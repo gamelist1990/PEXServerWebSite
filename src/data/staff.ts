@@ -45,5 +45,12 @@ export const staffMembers: StaffMember[] = [
     message: "よろしくお願いします！",
     icon: `${import.meta.env.BASE_URL}Staff/akimizu.png`,
     youtubeUrl: "https://www.youtube.com/@ak1_syosinsya"
+  },
+  {
+    id: "Lupalupadayo",
+    name: "ルパー",
+    message: "よろだよー 鳴潮復帰したぜ( ✌︎'ω')✌︎",
+    icon: `${import.meta.env.BASE_URL}Staff/lupa.png`,
+    xUrl: "https://x.com/lupalupanannda"
   }
 ];
