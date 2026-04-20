@@ -30,6 +30,8 @@ jobs:
         run: bun install
 
       - name: Build website
+        env:
+          VITE_BASE_PATH: "/PEXServerWebSite/"
         run: bun run build
 
       - name: Configure GitHub Pages
