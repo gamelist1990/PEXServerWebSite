@@ -5,7 +5,7 @@ import { ogTagsPlugin } from "./vite-plugin-og-tags";
 
 export default defineConfig({
   plugins: [react(), ogTagsPlugin()],
-  base: "/PEXServerWebSite/",
+  base: "/",
   build: {
     rollupOptions: {
       input: {
