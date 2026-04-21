@@ -23,6 +23,13 @@ export const featureCards: FeatureCard[] = [
 
 export const toolCards: ToolCard[] = [
   {
+    eyebrow: "PEXServer",
+    title: "PEXServerで使用しているソフトウェア",
+    body: "PEXServerで使用しているソフトウェアの中で、オープンソースとして公開しているものの配布場所です。",
+    to: "/tools/pexserver",
+    metric: "Open Source"
+  },
+  {
     eyebrow: "Visual Tool",
     title: "Bedrock Texture Explorer",
     body: "Bedrock vanilla のテクスチャを検索して、`Icon.XXXX` や texture path をその場でコピーできます。",

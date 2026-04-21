@@ -597,6 +597,120 @@ code {
   font-weight: 700;
 }
 
+.software-release-panel {
+  display: grid;
+  gap: 22px;
+}
+
+.software-entry {
+  display: grid;
+  gap: 16px;
+}
+
+.software-release-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.software-release-header h3,
+.software-download-card h3 {
+  margin: 0;
+  font-family: "Space Grotesk", sans-serif;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.software-release-header h3 {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+}
+
+.software-lead {
+  max-width: 72ch;
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.software-facts-grid,
+.software-download-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.software-facts-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.software-fact,
+.software-download-card {
+  border-radius: 18px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.46);
+  border: 1px solid rgba(23, 23, 23, 0.08);
+}
+
+.software-fact span,
+.software-download-card span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.78rem;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 800;
+}
+
+.software-fact strong {
+  font-size: 0.96rem;
+}
+
+.software-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.software-download-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.software-download-card {
+  display: grid;
+  gap: 12px;
+  min-height: 170px;
+  transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
+}
+
+.software-download-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(199, 91, 57, 0.28);
+  background: rgba(255, 255, 255, 0.58);
+}
+
+.software-download-card h3 {
+  font-size: 1.06rem;
+}
+
+.software-download-card > span {
+  align-self: end;
+  width: fit-content;
+  min-height: 36px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: rgba(23, 23, 23, 0.08);
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.software-back-link {
+  width: fit-content;
+}
+
 .texture-control-panel {
   overflow: hidden;
 }
@@ -1009,6 +1123,8 @@ code {
   .guide-steps-grid,
   .texture-stats-grid,
   .sound-stats-grid,
+  .software-facts-grid,
+  .software-download-grid,
   .sound-detail-grid,
   .sound-slider-grid {
     grid-template-columns: 1fr;
@@ -1016,6 +1132,10 @@ code {
 
   .hero-meta {
     grid-template-columns: 1fr;
+  }
+
+  .software-release-header {
+    display: grid;
   }
 }
 

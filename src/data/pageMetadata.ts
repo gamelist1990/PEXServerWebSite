@@ -41,6 +41,15 @@ export const pageMetadata: Record<string, MetaTagsConfig> = {
     ogImage: './server.png',
     twitterCard: 'summary_large_image',
   },
+  '/tools/pexserver': {
+    title: 'PEXServerで使用しているソフトウェア - PEXserver',
+    description: 'PEXServerで使用しているオープンソースソフトウェアの配布場所です。FerrumProxy は PEXServer のネットワーク通信のコアを支えています。',
+    ogTitle: 'PEXServerで使用しているソフトウェア - PEXserver',
+    ogDescription: 'PEXServerで使用しているオープンソースソフトウェアの配布場所です。FerrumProxy は PEXServer のネットワーク通信のコアを支えています。',
+    ogType: 'website',
+    ogImage: './server.png',
+    twitterCard: 'summary_large_image',
+  },
   '/tools/bedrock-textures': {
     title: 'Bedrock Texture Explorer - PEXserver',
     description: 'Bedrock Edition のテクスチャを検索・プレビュー。Icon.XXXX やテクスチャパスを簡単にコピーできます。',
