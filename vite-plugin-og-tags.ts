@@ -58,6 +58,15 @@ const pageMetadata: Record<string, MetaTagsConfig> = {
     ogImage: './server.png',
     twitterCard: 'summary_large_image',
   },
+  '/tools/pexserver/ferrumproxy': {
+    title: 'FerrumProxy - PEXserver',
+    description: 'FerrumProxy、FerrumProxyGUI、FerrumProxy Client の役割と配布リンクをまとめた PEXserver 向け特集ページです。',
+    ogTitle: 'FerrumProxy - PEXserver',
+    ogDescription: 'FerrumProxy、FerrumProxyGUI、FerrumProxy Client の役割と配布リンクをまとめた PEXserver 向け特集ページです。',
+    ogType: 'website',
+    ogImage: './server.png',
+    twitterCard: 'summary_large_image',
+  },
   '/tools/bedrock-textures': {
     title: 'Bedrock Texture Explorer - PEXserver',
     description: 'Bedrock Edition のテクスチャを検索・プレビュー。Icon.XXXX やテクスチャパスを簡単にコピーできます。',

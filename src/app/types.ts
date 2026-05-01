@@ -53,6 +53,7 @@ export type PexServerSoftware = {
   title: string;
   badge: string;
   description: string;
+  detailPath?: string;
   facts: Array<{
     label: string;
     value: string;

@@ -5,6 +5,7 @@ import { BedrockTexturePage } from "./pages/BedrockTexturePage";
 import { GuidePage } from "./pages/GuidePage";
 import { HomePage } from "./pages/HomePage";
 import { MinecraftSoundPage } from "./pages/MinecraftSoundPage";
+import { FerrumProxyPage } from "./pages/FerrumProxyPage";
 import { PexServerSoftwarePage } from "./pages/PexServerSoftwarePage";
 import { StaffPage } from "./pages/StaffPage";
 import { StatusPage } from "./pages/StatusPage";
@@ -34,6 +35,7 @@ function AppLayout() {
             <Route path="/guide" element={<GuidePage />} />
             <Route path="/tools" element={<ToolsPage />} />
             <Route path="/tools/pexserver" element={<PexServerSoftwarePage />} />
+            <Route path="/tools/pexserver/ferrumproxy" element={<FerrumProxyPage />} />
             <Route path="/tools/bedrock-textures" element={<BedrockTexturePage />} />
             <Route path="/tools/sounds" element={<MinecraftSoundPage />} />
             <Route path="/about" element={<AboutPage />} />

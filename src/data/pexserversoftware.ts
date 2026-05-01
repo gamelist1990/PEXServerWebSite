@@ -15,6 +15,7 @@ export const pexServerSoftware: PexServerSoftware[] = [
     badge: "Open Source",
     description:
       "FerrumProxy は現在、PEXServer のネットワーク通信のコアを支えており、プレイヤーをバックエンドサーバーに適切に転送させています。",
+    detailPath: "/tools/pexserver/ferrumproxy",
     facts: [
       {
         label: "Role",

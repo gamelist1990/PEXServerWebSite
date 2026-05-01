@@ -37,6 +37,11 @@ export function PexServerSoftwarePage() {
             </div>
 
             <div className="software-actions">
+              {software.detailPath && (
+                <NavLink className="primary-button" to={software.detailPath}>
+                  詳細ページ
+                </NavLink>
+              )}
               {software.links.map((link) => (
                 <a
                   className={link.variant === "primary" ? "primary-button" : "secondary-button"}
