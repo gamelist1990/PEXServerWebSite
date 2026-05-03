@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { BottomNav } from "./components/layout/BottomNav";
 import { SiteHeader } from "./components/layout/SiteHeader";
 import { AboutPage } from "./pages/AboutPage";
 import { BedrockTexturePage } from "./pages/BedrockTexturePage";
@@ -42,6 +43,7 @@ function AppLayout() {
             <Route path="/staff" element={<StaffPage />} />
           </Routes>
         </main>
+        <BottomNav />
       </div>
     </>
   );

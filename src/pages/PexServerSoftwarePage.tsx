@@ -56,15 +56,6 @@ export function PexServerSoftwarePage() {
             </div>
           </section>
 
-          <section className="software-download-grid">
-            {software.downloads.map((download) => (
-              <a className="software-download-card" href={download.href} key={`${software.title}-${download.filename}`}>
-                <p className="card-eyebrow">{download.platform}</p>
-                <h3>{download.filename}</h3>
-                <span>Download</span>
-              </a>
-            ))}
-          </section>
         </section>
       ))}
 
