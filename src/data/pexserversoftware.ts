@@ -1,7 +1,5 @@
 import type { PexServerSoftware } from "../app/types";
 
-const ferrumProxyReleaseBase = "https://github.com/gamelist1990/FerrumProxy/releases/download/FerrumProxy";
-
 export const pexServerSoftwareIntro = {
   eyebrow: "Tools / PEXServer",
   title: "PEXServerで使用しているソフトウェア",
@@ -47,27 +45,5 @@ export const pexServerSoftware: PexServerSoftware[] = [
         variant: "secondary"
       }
     ],
-    downloads: [
-      {
-        platform: "Windows",
-        filename: "FerrumProxy-windows-x64.exe",
-        href: `${ferrumProxyReleaseBase}/FerrumProxy-windows-x64.exe`
-      },
-      {
-        platform: "Linux",
-        filename: "FerrumProxy-linux-x64",
-        href: `${ferrumProxyReleaseBase}/FerrumProxy-linux-x64`
-      },
-      {
-        platform: "Linux ARM64",
-        filename: "FerrumProxy-linux-arm64",
-        href: `${ferrumProxyReleaseBase}/FerrumProxy-linux-arm64`
-      },
-      {
-        platform: "macOS",
-        filename: "FerrumProxy-macos-arm64",
-        href: `${ferrumProxyReleaseBase}/FerrumProxy-macos-arm64`
-      }
-    ]
   }
 ];

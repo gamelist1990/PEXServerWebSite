@@ -42,12 +42,6 @@ export type PexServerSoftwareLink = {
   variant?: "primary" | "secondary";
 };
 
-export type PexServerSoftwareDownload = {
-  platform: string;
-  filename: string;
-  href: string;
-};
-
 export type PexServerSoftware = {
   eyebrow: string;
   title: string;
@@ -59,7 +53,6 @@ export type PexServerSoftware = {
     value: string;
   }>;
   links: PexServerSoftwareLink[];
-  downloads: PexServerSoftwareDownload[];
 };
 
 export type BedrockTextureEntry = {
