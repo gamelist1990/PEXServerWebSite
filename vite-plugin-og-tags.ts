@@ -106,7 +106,7 @@ const pageMetadata: Record<string, MetaTagsConfig> = {
 };
 
 // Base URL for the site
-const SITE_URL = 'https://pexserver.mooo.com';
+const SITE_URL = 'https://pexserver.com';
 
 function generateMetaTags(config: MetaTagsConfig, route: string): string {
   const tags: string[] = [];
