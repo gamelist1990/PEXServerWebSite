@@ -22,6 +22,18 @@ export type FeatureCard = {
   body: string;
 };
 
+export type GameMode = {
+  name: string;
+  category: string;
+  body: string;
+  tags: string[];
+};
+
+export type ServerFact = {
+  label: string;
+  value: string;
+};
+
 export type GuideStep = {
   title: string;
   body: string;
