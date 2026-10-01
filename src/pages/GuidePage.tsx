@@ -64,7 +64,8 @@ export function GuidePage() {
           <p className="section-text">
             まずは外部サーバー追加方式です。アドレスは{" "}
             <code className="inline-code">{server.address}</code>、ポートは{" "}
-            <code className="inline-code">25565</code> を使います。
+            <code className="inline-code">{server.bedrockPort}</code>{" "}
+            を使います。
           </p>
         </div>
         <div className="guide-steps-grid">
@@ -72,7 +73,10 @@ export function GuidePage() {
             <GuideStepCard
               key={`bedrock-server-${step.title}`}
               title={step.title}
-              body={step.body.split("pexserver.com").join(server.address)}
+              body={step.body
+                .split("pexserver.com")
+                .join(server.address)
+                .replace("25565", String(server.bedrockPort))}
               image={step.image}
             />
           ))}

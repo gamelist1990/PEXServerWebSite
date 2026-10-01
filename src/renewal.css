@@ -1,9 +1,10 @@
-/* PEXserver renewal — warm paper, terracotta and forest */
+/* PEXserver renewal — warm paper, copper and charcoal */
 :root {
-  --ink: #252923;
-  --muted: #66675c;
+  --ink: #25282e;
+  --muted: #68676a;
   --accent: #a7472b;
-  --green: #235347;
+  --brand: #30343b;
+  --green: #30343b;
   --panel: #fffcf6;
   --glass: #faf6ed;
   --glass-strong: #faf6ed;
@@ -33,7 +34,7 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 :focus-visible {
-  outline: 3px solid var(--green);
+  outline: 3px solid var(--brand);
   outline-offset: 4px;
 }
 .page-noise {
@@ -83,12 +84,12 @@ a {
 .nav-link:hover,
 .nav-link.is-active {
   transform: none;
-  background: #e8e9dd;
+  background: #e9e4dc;
   border-color: transparent;
-  color: var(--green);
+  color: var(--brand);
 }
 .nav-discord {
-  background: var(--green);
+  background: var(--brand);
   box-shadow: none;
   border-radius: 6px;
   font-size: 0.82rem;
@@ -96,7 +97,7 @@ a {
 .nav-discord:hover {
   transform: none;
   box-shadow: none;
-  background: #193f35;
+  background: #171b22;
 }
 .page-grid {
   gap: 40px;
@@ -145,12 +146,12 @@ a {
   font-size: 0.87rem;
 }
 .primary-button {
-  background: var(--green);
-  border: 1px solid var(--green);
+  background: var(--brand);
+  border: 1px solid var(--brand);
   color: #fff;
 }
 .primary-button:hover {
-  background: #193f35;
+  background: #171b22;
   transform: none;
   box-shadow: none;
 }
@@ -161,13 +162,13 @@ a {
 .secondary-button:hover {
   transform: none;
   box-shadow: none;
-  background: #e8e9dd;
+  background: #e9e4dc;
 }
 .text-link {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
-  color: var(--green);
+  color: var(--brand);
   font-size: 0.87rem;
   font-weight: 700;
 }
@@ -229,7 +230,7 @@ a {
   height: 520px;
   overflow: hidden;
   border-radius: 12px 100px 12px 12px;
-  background: var(--green);
+  background: var(--brand);
 }
 .renewal-hero-art img {
   width: 100%;
@@ -241,7 +242,7 @@ a {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, #132d1800 35%, #152b22e8);
+  background: linear-gradient(180deg, #171b2200 35%, #171b22e8);
 }
 .hero-art-label {
   position: absolute;
@@ -303,7 +304,7 @@ a {
   min-width: 0;
 }
 .server-entry-survival {
-  border-top-color: var(--green);
+  border-top-color: var(--brand);
 }
 .server-entry-top {
   display: flex;
@@ -334,10 +335,10 @@ a {
   background: #75776a;
 }
 .live-label.online {
-  color: var(--green);
+  color: var(--brand);
 }
 .live-label.online::before {
-  background: var(--green);
+  background: var(--brand);
 }
 .server-entry h3 {
   font-family: "Space Grotesk", sans-serif;
@@ -381,8 +382,8 @@ a {
   overflow-wrap: anywhere;
 }
 .address-copy:hover {
-  border-color: var(--green);
-  background: #e9eddf;
+  border-color: var(--brand);
+  background: #ede5db;
 }
 .copy-feedback {
   display: block;
@@ -401,7 +402,7 @@ a {
   min-height: 44px;
   font-size: 0.83rem;
   font-weight: 700;
-  color: var(--green);
+  color: var(--brand);
 }
 .entry-link:hover {
   text-decoration: underline;
@@ -426,7 +427,7 @@ a {
 .mode-card:hover {
   transform: none;
   background: #fffcf6;
-  border-color: #b9bcaa;
+  border-color: #c4b9ad;
 }
 .mode-card h3 {
   font-size: 1.35rem;
@@ -456,15 +457,15 @@ a {
   gap: 6px;
 }
 .mode-tags span {
-  background: #eceee3;
-  color: #3f5648;
+  background: #ebe6df;
+  color: #514b46;
   border-radius: 3px;
   font-size: 0.65rem;
   padding: 4px 8px;
 }
 .community-banner {
-  background: #e6eadd;
-  border: 1px solid #d4dbc8;
+  background: #ede5db;
+  border: 1px solid #ddd1c4;
   border-radius: 10px;
   padding: 40px;
   display: flex;
@@ -504,12 +505,12 @@ a {
   font-size: 0.84rem;
 }
 .download-filter button.selected {
-  background: var(--green);
-  border-color: var(--green);
+  background: var(--brand);
+  border-color: var(--brand);
   color: white;
 }
 .download-filter button:hover {
-  border-color: var(--green);
+  border-color: var(--brand);
 }
 .library-title {
   display: flex;
@@ -543,7 +544,7 @@ a {
   position: relative;
 }
 .cooldown-preview {
-  background: #26483d;
+  background: #292e36;
   color: #fffaea;
   display: flex;
   flex-direction: column;
@@ -646,7 +647,7 @@ a {
   border-radius: 10px;
 }
 .software-download:hover {
-  border-color: var(--green);
+  border-color: var(--brand);
 }
 .software-download h3 {
   font-size: 1.8rem;
@@ -659,7 +660,7 @@ a {
 }
 .software-arrow {
   font-size: 2rem;
-  color: var(--green);
+  color: var(--brand);
 }
 .join-selector h2 {
   margin-top: 8px;
@@ -671,7 +672,7 @@ a {
   max-width: 620px;
 }
 .survival-hero {
-  border-top: 4px solid var(--green);
+  border-top: 4px solid var(--brand);
   padding: 56px;
 }
 .survival-hero .address-control {
@@ -684,7 +685,7 @@ a {
   top: 8px;
   left: 8px;
   transform: translateY(-200%);
-  background: var(--green);
+  background: var(--brand);
   color: white;
   padding: 12px 20px;
   border-radius: 5px;

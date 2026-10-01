@@ -25,7 +25,7 @@ export function StatusCard({
   const version = status?.online
     ? status?.version || status?.protocol?.name || "公開情報なし"
     : "—";
-  const motd = status?.motd?.clean?.join(" ") || "PEXserver";
+  const motd = status?.motd?.clean?.join(" ") || "公開情報を取得できません";
   const software = status?.software || status?.gamemode || fallbackSoftware;
 
   return (
@@ -46,7 +46,7 @@ export function StatusCard({
               ? "取得できません"
               : online
                 ? "稼働中"
-                : "停止中"}
+                : "応答なし"}
         </span>
         <strong>
           {playerCount} / {maxPlayers}
@@ -65,7 +65,13 @@ export function StatusCard({
         <p>{motd}</p>
       </div>
 
-      {error ? <p className="status-error">{error}</p> : null}
+      {error ? (
+        <p className="status-error">{error}</p>
+      ) : !loading && !online ? (
+        <p className="status-error">
+          外部の確認サービスから応答を取得できません。サーバーの停止を示すものではありません。
+        </p>
+      ) : null}
     </aside>
   );
 }

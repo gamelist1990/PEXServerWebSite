@@ -18,7 +18,7 @@ export const servers = [
     description:
       "自分のペースで、冒険を続けよう。探索も建築も楽しめるサバイバルサーバー。",
     fallbackVersion: "26.3",
-    bedrockPort: 25565,
+    bedrockPort: 19132,
   },
 ] as const;
 export type ServerConfig = (typeof servers)[number];
