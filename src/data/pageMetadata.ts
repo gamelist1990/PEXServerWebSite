@@ -1,3 +1,4 @@
+import { downloadResources, resourcePath } from "./downloads";
 import type { MetaTagsConfig } from "../hooks/useMetaTags";
 
 /**
@@ -13,8 +14,7 @@ export const pageMetadata: Record<string, MetaTagsConfig> = {
     ogDescription:
       "PEXserver の Minecraft サーバー情報、参加方法、ライブステータスをまとめた公式サイト。",
     ogType: "website",
-    ogImage: "./server.png",
-    twitterCard: "summary_large_image",
+    twitterCard: "summary",
   },
   "/status": {
     title: "サーバーステータス - PEXserver",
@@ -24,8 +24,7 @@ export const pageMetadata: Record<string, MetaTagsConfig> = {
     ogDescription:
       "PEXserver の PvP・ミニゲームとサバイバルのJava / Bedrockステータスを確認できます。",
     ogType: "website",
-    ogImage: "./server.png",
-    twitterCard: "summary_large_image",
+    twitterCard: "summary",
   },
   "/guide": {
     title: "参加ガイド - PEXserver",
@@ -35,8 +34,7 @@ export const pageMetadata: Record<string, MetaTagsConfig> = {
     ogDescription:
       "PEXserver への参加方法を画像付きで詳しく解説。Java 版・Bedrock 版の両方に対応しています。",
     ogType: "website",
-    ogImage: "./server.png",
-    twitterCard: "summary_large_image",
+    twitterCard: "summary",
   },
   "/downloads": {
     title: "配布 - PEXserver",
@@ -46,8 +44,7 @@ export const pageMetadata: Record<string, MetaTagsConfig> = {
     ogDescription:
       "Geyser拡張・リソースパック・公開ソフトウェアのダウンロード。",
     ogType: "website",
-    ogImage: "./server.png",
-    twitterCard: "summary_large_image",
+    twitterCard: "summary",
   },
   "/survival": {
     title: "PEXSurvival - サバイバルサーバー",
@@ -56,8 +53,7 @@ export const pageMetadata: Record<string, MetaTagsConfig> = {
     ogTitle: "PEXSurvival",
     ogDescription: "自分のペースで冒険を続けよう。play.pexserver.com",
     ogType: "website",
-    ogImage: "./server.png",
-    twitterCard: "summary_large_image",
+    twitterCard: "summary",
   },
   "/downloads/pexserver": {
     title: "PEXServerで使用しているソフトウェア - PEXserver",
@@ -67,8 +63,7 @@ export const pageMetadata: Record<string, MetaTagsConfig> = {
     ogDescription:
       "PEXServerで使用しているオープンソースソフトウェアの配布場所です。FerrumProxy は PEXServer のネットワーク通信のコアを支えています。",
     ogType: "website",
-    ogImage: "./server.png",
-    twitterCard: "summary_large_image",
+    twitterCard: "summary",
   },
   "/downloads/pexserver/ferrumproxy": {
     title: "FerrumProxy - PEXserver",
@@ -78,8 +73,7 @@ export const pageMetadata: Record<string, MetaTagsConfig> = {
     ogDescription:
       "FerrumProxy、FerrumProxyGUI、FerrumProxy Client の役割と配布リンクをまとめた PEXserver 向け特集ページです。",
     ogType: "website",
-    ogImage: "./server.png",
-    twitterCard: "summary_large_image",
+    twitterCard: "summary",
   },
   "/tools/bedrock-textures": {
     title: "Bedrock Texture Explorer - PEXserver",
@@ -89,8 +83,7 @@ export const pageMetadata: Record<string, MetaTagsConfig> = {
     ogDescription:
       "Bedrock Edition のテクスチャを検索・プレビュー。Icon.XXXX やテクスチャパスを簡単にコピーできます。",
     ogType: "website",
-    ogImage: "./server.png",
-    twitterCard: "summary_large_image",
+    twitterCard: "summary",
   },
   "/tools/sounds": {
     title: "Minecraft Sound Explorer - PEXserver",
@@ -100,8 +93,7 @@ export const pageMetadata: Record<string, MetaTagsConfig> = {
     ogDescription:
       "Minecraft のサウンドキーを検索して再生。/playsound コマンド用のキーを確認できます。",
     ogType: "website",
-    ogImage: "./server.png",
-    twitterCard: "summary_large_image",
+    twitterCard: "summary",
   },
   "/about": {
     title: "About - PEXserver",
@@ -111,8 +103,7 @@ export const pageMetadata: Record<string, MetaTagsConfig> = {
     ogDescription:
       "PEXserver について。サーバーの運営方針やコンセプトなどをご紹介します。",
     ogType: "website",
-    ogImage: "./server.png",
-    twitterCard: "summary_large_image",
+    twitterCard: "summary",
   },
   "/staff": {
     title: "スタッフ一覧 - PEXserver",
@@ -120,12 +111,29 @@ export const pageMetadata: Record<string, MetaTagsConfig> = {
     ogTitle: "スタッフ一覧 - PEXserver",
     ogDescription: "PEXserver の運営スタッフメンバーをご紹介します。",
     ogType: "website",
-    ogImage: "./server.png",
-    twitterCard: "summary_large_image",
+    twitterCard: "summary",
   },
 };
 
-pageMetadata["/tools"] = pageMetadata["/downloads"];
-pageMetadata["/tools/pexserver"] = pageMetadata["/downloads/pexserver"];
-pageMetadata["/tools/pexserver/ferrumproxy"] =
-  pageMetadata["/downloads/pexserver/ferrumproxy"];
+for (const resource of downloadResources) {
+  pageMetadata[resourcePath(resource)] = {
+    title: `${resource.name} - Geyser配布 | PEXserver`,
+    description: resource.description,
+    ogTitle: resource.shareTitle,
+    ogDescription: resource.description,
+    ogType: "website",
+    ogImage: resource.image,
+    ogImageAlt: `${resource.name}のパックアイコン`,
+    ogImageWidth: resource.id === "cooldown-animation" ? 456 : 1254,
+    ogImageHeight: resource.id === "cooldown-animation" ? 456 : 1254,
+    twitterCard: "summary",
+  };
+}
+for (const [path, metadata] of Object.entries(pageMetadata))
+  metadata.canonicalPath = path;
+for (const [alias, target] of Object.entries({
+  "/tools": "/downloads",
+  "/tools/pexserver": "/downloads/pexserver",
+  "/tools/pexserver/ferrumproxy": "/downloads/pexserver/ferrumproxy",
+}))
+  pageMetadata[alias] = { ...pageMetadata[target], noindex: true };

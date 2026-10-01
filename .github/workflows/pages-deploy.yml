@@ -29,8 +29,14 @@ jobs:
       - name: Install dependencies
         run: bun install
 
+      - name: Type check
+        run: bunx tsc --noEmit
+
       - name: Build website
         run: bun run build
+
+      - name: Verify static sharing and SEO metadata
+        run: bun run test:seo
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5

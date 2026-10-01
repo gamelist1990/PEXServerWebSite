@@ -22,6 +22,9 @@ import { StatusPage } from "./pages/StatusPage";
 import { DownloadsPage } from "./pages/DownloadsPage";
 import { SurvivalPage } from "./pages/SurvivalPage";
 
+import { DownloadDetailPage } from "./pages/DownloadDetailPage";
+import { downloadResources, resourcePath } from "./data/downloads";
+
 function App() {
   return (
     <BrowserRouter basename={SITE_BASE_PATH}>
@@ -40,7 +43,10 @@ function AppLayout() {
   return (
     <div className="app-shell">
       <div className="page-noise" />
-      <a className="skip-link" href={`${SITE_BASE_PATH.replace(/\/$/, "")}${location.pathname}${location.search}#main-content`}>
+      <a
+        className="skip-link"
+        href={`${SITE_BASE_PATH.replace(/\/$/, "")}${location.pathname}${location.search}#main-content`}
+      >
         本文へスキップ
       </a>
       <SiteHeader />
@@ -53,6 +59,13 @@ function AppLayout() {
           <Route path="/status" element={<StatusPage />} />
           <Route path="/guide" element={<GuidePage />} />
           <Route path="/downloads" element={<DownloadsPage />} />
+          {downloadResources.map((resource) => (
+            <Route
+              key={resource.id}
+              path={resourcePath(resource)}
+              element={<DownloadDetailPage resource={resource} />}
+            />
+          ))}
           <Route path="/survival" element={<SurvivalPage />} />
           <Route
             path="/downloads/pexserver"
@@ -114,7 +127,9 @@ function SiteFooter() {
           Discord
         </a>
       </nav>
-      <p className="site-footer-copy">© {new Date().getFullYear()} PEXserver</p>
+      <p className="site-footer-copy">
+        © {new Date().getFullYear()} PEXserver
+      </p>
     </footer>
   );
 }

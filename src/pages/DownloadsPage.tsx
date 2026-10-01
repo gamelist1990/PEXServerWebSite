@@ -1,8 +1,13 @@
-import { SITE_BASE_PATH } from "../app/sitePaths";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useMetaTags } from "../hooks/useMetaTags";
 import { pageMetadata } from "../data/pageMetadata";
+import { downloadResources, resourcePath } from "../data/downloads";
+import { ShareTitle } from "../components/common/ShareTitle";
+import {
+  ResourcePreview,
+  ResourceActions,
+} from "../components/common/ResourcePreview";
 const categories = ["すべて", "Geyser", "PEXServer"] as const;
 export function DownloadsPage() {
   useMetaTags(pageMetadata["/downloads"]);
@@ -37,107 +42,36 @@ export function DownloadsPage() {
             <span>EXTENSION & RESOURCE PACK</span>
           </div>
           <div className="download-grid">
-            <article className="download-card">
-              <div
-                className="download-preview cooldown-preview"
-                aria-hidden="true"
-              >
-                <span>ATTACK COOLDOWN</span>
-                <div className="cooldown-bars">
-                  {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
-                    <i key={n} />
-                  ))}
-                </div>
-                <strong>
-                  Cooldown
-                  <br />
-                  Animation
-                </strong>
-                <small>JAVA COMBAT → BEDROCK</small>
-              </div>
-              <div className="download-card-body">
-                <span className="download-kind">GEYSER EXTENSION</span>
-                <h3>CooldownAnimation</h3>
-                <p>
-                  Javaの攻撃クールダウンを、Bedrockプレイヤーの手元のアニメーションで表示。Geyser拡張・Paper連携・専用パックを組み合わせて使用します。
-                </p>
-                <div className="mode-tags">
-                  <span>Geyser API 2.11.0+</span>
-                  <span>Paper 26.3</span>
-                </div>
-                <p className="download-note">
-                  開発段階：実機での表示・Velocity経由の実接続は未検証。導入条件はGitHubのガイドをご確認ください。
-                </p>
-                <div className="download-actions">
-                  <a
-                    className="primary-button"
-                    href="https://github.com/gamelist1990/GeyserCooldownAnimation/releases/latest"
-                    target="_blank"
-                    rel="noreferrer"
+            {downloadResources.map((resource) => (
+              <article className="download-card" key={resource.id}>
+                <ResourcePreview resource={resource} />
+                <div className="download-card-body">
+                  <span className="download-kind">{resource.kind}</span>
+                  <h3>
+                    <ShareTitle
+                      path={resourcePath(resource)}
+                      name={resource.name}
+                    >
+                      {resource.name}
+                    </ShareTitle>
+                  </h3>
+                  <p>{resource.description}</p>
+                  <div className="mode-tags">
+                    {resource.tags.map((tag) => (
+                      <span key={tag}>{tag}</span>
+                    ))}
+                  </div>
+                  <p className="download-note">{resource.note}</p>
+                  <ResourceActions resource={resource} />
+                  <NavLink
+                    className="resource-detail-link text-link"
+                    to={resourcePath(resource)}
                   >
-                    最新版をダウンロード ↗
-                  </a>
-                  <a
-                    className="text-link"
-                    href="https://github.com/gamelist1990/GeyserCooldownAnimation/blob/main/INSTALL.md"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    導入ガイド
-                  </a>
+                    詳細・共有ページ →
+                  </NavLink>
                 </div>
-              </div>
-            </article>
-            <article className="download-card">
-              <div className="download-preview glass-preview">
-                <img
-                  src={`${SITE_BASE_PATH}GeyserPack/2DGlass.png`}
-                  alt="2D Glassのパックアイコン"
-                  width="256"
-                  height="256"
-                />
-                <span>RESOURCE PACK / v1.0.9</span>
-              </div>
-              <div className="download-card-body">
-                <span className="download-kind">BEDROCK RESOURCE PACK</span>
-                <h3>2D Glass</h3>
-                <p>
-                  ガラス板アイテムを2D表示にするリソースパック。BedrockのバニラUIを保ちながら、ガラス板の見た目を整えます。
-                </p>
-                <div className="mode-tags">
-                  <span>Bedrock</span>
-                  <span>v1.0.9</span>
-                  <span>ZIP / MCPACK</span>
-                </div>
-                <p className="download-note">
-                  MCPACKをGeyserのpacksフォルダに配置して再起動。Bedrockクライアントではファイルを開いてインポートできます。
-                </p>
-                <div className="download-actions">
-                  <a
-                    className="primary-button"
-                    href={`${SITE_BASE_PATH}GeyserPack/2DGlass.mcpack`}
-                    download="2DGlass.mcpack"
-                  >
-                    MCPACKをダウンロード ↓
-                  </a>
-                  <a
-                    className="text-link"
-                    href={`${SITE_BASE_PATH}GeyserPack/2DGlass.zip`}
-                    download="2DGlass.zip"
-                  >
-                    元のZIP
-                  </a>
-                  <a
-                    className="text-link"
-                    href="https://github.com/gamelist1990/PEXServerWebSite/tree/main/public/GeyserPack"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    ファイルを見る
-                  </a>
-                </div>
-              </div>
-            </article>
+              </article>
+            ))}
           </div>
         </section>
       )}
