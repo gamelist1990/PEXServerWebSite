@@ -1,3 +1,4 @@
+import { SITE_BASE_PATH } from "../app/sitePaths";
 import { useEffect } from 'react';
 
 export interface MetaTagsConfig {
@@ -54,7 +55,7 @@ export function useMetaTags(config: MetaTagsConfig) {
     }
 
     if (config.ogImage) {
-      updateMetaTag('og:image', new URL(config.ogImage, new URL(import.meta.env.BASE_URL, window.location.origin)).href);
+      updateMetaTag('og:image', new URL(config.ogImage, new URL(SITE_BASE_PATH, window.location.origin)).href);
     }
 
     updateMetaTag('og:url', window.location.origin + window.location.pathname);

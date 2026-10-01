@@ -1,3 +1,4 @@
+import { SITE_BASE_PATH } from "../app/sitePaths";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useMetaTags } from "../hooks/useMetaTags";
@@ -90,7 +91,7 @@ export function DownloadsPage() {
             <article className="download-card">
               <div className="download-preview glass-preview">
                 <img
-                  src={`${import.meta.env.BASE_URL}GeyserPack/2DGlass.png`}
+                  src={`${SITE_BASE_PATH}GeyserPack/2DGlass.png`}
                   alt="2D Glassのパックアイコン"
                   width="256"
                   height="256"
@@ -114,14 +115,14 @@ export function DownloadsPage() {
                 <div className="download-actions">
                   <a
                     className="primary-button"
-                    href={`${import.meta.env.BASE_URL}GeyserPack/2DGlass.mcpack`}
+                    href={`${SITE_BASE_PATH}GeyserPack/2DGlass.mcpack`}
                     download="2DGlass.mcpack"
                   >
                     MCPACKをダウンロード ↓
                   </a>
                   <a
                     className="text-link"
-                    href={`${import.meta.env.BASE_URL}GeyserPack/2DGlass.zip`}
+                    href={`${SITE_BASE_PATH}GeyserPack/2DGlass.zip`}
                     download="2DGlass.zip"
                   >
                     元のZIP

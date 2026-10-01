@@ -1,3 +1,4 @@
+import { SITE_BASE_PATH } from "../app/sitePaths";
 import { useEffect, useState } from "react";
 import type { BedrockTextureEntry } from "../app/types";
 import { bedrockTextureCount, bedrockTextureDataPath } from "../data/generated/bedrockTextureMeta";
@@ -19,7 +20,7 @@ export function BedrockTexturePage() {
 
     const loadEntries = async () => {
       try {
-        const response = await fetch(`${import.meta.env.BASE_URL}${bedrockTextureDataPath}`, { cache: "no-store" });
+        const response = await fetch(`${SITE_BASE_PATH}${bedrockTextureDataPath}`, { cache: "no-store" });
         if (!response.ok) {
           throw new Error(`HTTP ${response.status}`);
         }
@@ -188,7 +189,7 @@ export function BedrockTexturePage() {
             >
               <img
                 className="texture-card-image"
-                src={`${import.meta.env.BASE_URL}${entry.webAsset}`}
+                src={`${SITE_BASE_PATH}${entry.webAsset}`}
                 alt={entry.constant}
                 loading="lazy"
               />

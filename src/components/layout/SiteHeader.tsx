@@ -1,3 +1,4 @@
+import { SITE_BASE_PATH } from "../../app/sitePaths";
 import { useEffect, useState, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { DISCORD_INVITE_URL } from "../../app/constants";
@@ -79,7 +80,7 @@ export function SiteHeader() {
 
       <NavLink className="nav-brand" to="/" end onClick={close}>
         <span className="nav-logo" aria-hidden="true">
-          <img src={`${import.meta.env.BASE_URL}server.png`} alt="" />
+          <img src={`${SITE_BASE_PATH}server.png`} alt="" />
         </span>
         <span className="nav-brand-copy">
           <strong>PEXserver</strong>

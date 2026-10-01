@@ -1,3 +1,4 @@
+import { SITE_BASE_PATH } from "./app/sitePaths";
 import { useEffect } from "react";
 import {
   BrowserRouter,
@@ -23,7 +24,7 @@ import { SurvivalPage } from "./pages/SurvivalPage";
 
 function App() {
   return (
-    <BrowserRouter basename={import.meta.env.BASE_URL}>
+    <BrowserRouter basename={SITE_BASE_PATH}>
       <AppLayout />
     </BrowserRouter>
   );
@@ -39,7 +40,7 @@ function AppLayout() {
   return (
     <div className="app-shell">
       <div className="page-noise" />
-      <a className="skip-link" href="#main-content">
+      <a className="skip-link" href={`${SITE_BASE_PATH.replace(/\/$/, "")}${location.pathname}${location.search}#main-content`}>
         本文へスキップ
       </a>
       <SiteHeader />

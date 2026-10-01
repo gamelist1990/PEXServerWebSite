@@ -1,3 +1,4 @@
+import { SITE_BASE_PATH } from "../app/sitePaths";
 import { NavLink } from "react-router-dom";
 import { gameModes } from "../data/siteContent";
 import { DISCORD_INVITE_URL } from "../app/constants";
@@ -22,7 +23,7 @@ export function HomePage() {
             PEXserverで、あなたの遊び方を見つけよう。
           </p>
           <div className="hero-link-row">
-            <a className="primary-button" href="#servers">
+            <a className="primary-button" href={`${SITE_BASE_PATH}#servers`}>
               サーバーを選ぶ <span>↗</span>
             </a>
             <NavLink className="text-link" to="/downloads">
@@ -35,7 +36,7 @@ export function HomePage() {
         </div>
         <div className="renewal-hero-art">
           <img
-            src={`${import.meta.env.BASE_URL}server-header.png`}
+            src={`${SITE_BASE_PATH}server-header.png`}
             alt="PEXserverのMinecraftワールド"
             width="1200"
             height="800"

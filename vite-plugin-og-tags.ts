@@ -6,7 +6,7 @@ import { pageMetadata } from "./src/data/pageMetadata";
 import type { MetaTagsConfig } from "./src/hooks/useMetaTags";
 
 // Base URL for the site
-const SITE_URL = process.env.VITE_SITE_URL || "https://pexserver.com";
+const SITE_URL = "https://pexserver.com";
 
 function generateMetaTags(config: MetaTagsConfig, route: string): string {
   const tags: string[] = [];

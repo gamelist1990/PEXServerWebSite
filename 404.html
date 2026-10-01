@@ -2,6 +2,14 @@
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      // The same build is served at the proxy root and the GitHub project path.
+      const projectPath = "/PEXServerWebSite";
+      const siteBase = document.createElement("base");
+      siteBase.href = location.pathname === projectPath || location.pathname.startsWith(projectPath + "/")
+        ? projectPath + "/" : "/";
+      document.head.prepend(siteBase);
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
