@@ -95,6 +95,7 @@ export function structuredData(config: MetaTagsConfig) {
       ...(resource.id === "cooldown-animation"
         ? {
             applicationCategory: "GameApplication",
+            softwareVersion: resource.version,
             operatingSystem: "Geyser / Minecraft Bedrock Edition",
             downloadUrl: resource.links[0].href,
           }

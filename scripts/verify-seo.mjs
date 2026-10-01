@@ -89,3 +89,25 @@ assert.deepEqual(meta(readFileSync(join(dist, "404.html"), "utf8"), "robots"), [
 console.log(
   `Verified ${routes.length} static pages, resource icons, text-only home, canonical URLs, JSON-LD, sitemap and robots.txt.`,
 );
+
+const catalog = JSON.parse(readFileSync(join(dist, "downloads.json"), "utf8"));
+const sourceCatalog = JSON.parse(
+  readFileSync("src/data/generated/downloads.json", "utf8"),
+);
+assert.deepEqual(
+  catalog,
+  sourceCatalog,
+  "Public JSON and built catalog must match",
+);
+for (const resource of catalog.resources) {
+  const html = read(`downloads/geyser/${resource.id}`);
+  assert.ok(
+    meta(html, "og:title")[0].includes(`v${resource.version}`),
+    "OG title must contain the generated version",
+  );
+  for (const link of resource.links)
+    assert.ok(
+      html.includes(link.href),
+      "Static resource page must include generated download links",
+    );
+}

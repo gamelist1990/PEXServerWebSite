@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-01T10:25:29.545038+00:00",
+  "resources": [
+    {
+      "id": "cooldown-animation",
+      "name": "CooldownAnimation",
+      "shareTitle": "Cooldown Animation — Geyser向け攻撃クールダウン表示 (v1.2.0)",
+      "kind": "GEYSER EXTENSION",
+      "description": "Javaの攻撃クールダウンを、Bedrockプレイヤーの手元のアニメーションで表示。Geyser拡張・Paper連携・専用パックを組み合わせて使用します。",
+      "image": "GeyserPack/CooldownAnimation.png",
+      "tags": [
+        "Geyser",
+        "Paper連携",
+        "v1.2.0"
+      ],
+      "eyebrow": "ATTACK COOLDOWN",
+      "version": "1.2.0",
+      "publishedAt": "2026-09-30T16:12:43Z",
+      "releaseUrl": "https://github.com/gamelist1990/GeyserCooldownAnimation/releases/tag/v1.2.0",
+      "note": "v1.2.0 の導入条件と更新内容は、リリース情報と導入ガイドをご確認ください。",
+      "links": [
+        {
+          "label": "最新版をダウンロード (v1.2.0) ↗",
+          "href": "https://github.com/gamelist1990/GeyserCooldownAnimation/releases/download/v1.2.0/GeyserCooldownAnimation-1.2.0.zip",
+          "external": true
+        },
+        {
+          "label": "導入ガイド",
+          "href": "https://github.com/gamelist1990/GeyserCooldownAnimation/blob/v1.2.0/INSTALL.md",
+          "external": true
+        },
+        {
+          "label": "リリース情報",
+          "href": "https://github.com/gamelist1990/GeyserCooldownAnimation/releases/tag/v1.2.0",
+          "external": true
+        }
+      ],
+      "imageWidth": 456,
+      "imageHeight": 456
+    },
+    {
+      "id": "2d-glass",
+      "name": "2D Glass",
+      "shareTitle": "2D Glass — Bedrock向けガラス板リソースパック (v1.0.9)",
+      "kind": "BEDROCK RESOURCE PACK",
+      "description": "ガラス板アイテムを2D表示にするリソースパック。BedrockのバニラUIを保ちながら、ガラス板の見た目を整えます。",
+      "image": "GeyserPack/2DGlass.png",
+      "note": "MCPACKをGeyserのpacksフォルダに配置して再起動。Bedrockクライアントではファイルを開いてインポートできます。",
+      "tags": [
+        "Bedrock",
+        "ZIP / MCPACK",
+        "v1.0.9"
+      ],
+      "eyebrow": "RESOURCE PACK / v1.0.9",
+      "version": "1.0.9",
+      "links": [
+        {
+          "label": "MCPACKをダウンロード ↓",
+          "href": "GeyserPack/2DGlass.mcpack",
+          "download": "2DGlass.mcpack"
+        },
+        {
+          "label": "元のZIP",
+          "href": "GeyserPack/2DGlass.zip",
+          "download": "2DGlass.zip"
+        },
+        {
+          "label": "ファイルを見る",
+          "href": "https://github.com/gamelist1990/PEXServerWebSite/tree/main/public/GeyserPack",
+          "external": true
+        }
+      ],
+      "imageWidth": 1254,
+      "imageHeight": 1254
+    }
+  ]
+}

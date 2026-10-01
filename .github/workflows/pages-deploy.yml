@@ -4,6 +4,8 @@ on:
   push:
     branches: ["main"]
   workflow_dispatch:
+  schedule:
+    - cron: "17 * * * *"
 
 permissions:
   contents: read
@@ -28,6 +30,14 @@ jobs:
 
       - name: Install dependencies
         run: bun install
+
+      - name: Generate latest download catalog
+        run: bun run sync:downloads
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Verify catalog generation
+        run: bun run test:downloads
 
       - name: Type check
         run: bunx tsc --noEmit

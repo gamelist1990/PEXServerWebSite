@@ -117,15 +117,15 @@ export const pageMetadata: Record<string, MetaTagsConfig> = {
 
 for (const resource of downloadResources) {
   pageMetadata[resourcePath(resource)] = {
-    title: `${resource.name} - Geyser配布 | PEXserver`,
+    title: `${resource.name} v${resource.version} - Geyser配布 | PEXserver`,
     description: resource.description,
     ogTitle: resource.shareTitle,
     ogDescription: resource.description,
     ogType: "website",
     ogImage: resource.image,
     ogImageAlt: `${resource.name}のパックアイコン`,
-    ogImageWidth: resource.id === "cooldown-animation" ? 456 : 1254,
-    ogImageHeight: resource.id === "cooldown-animation" ? 456 : 1254,
+    ogImageWidth: resource.imageWidth,
+    ogImageHeight: resource.imageHeight,
     twitterCard: "summary",
   };
 }
