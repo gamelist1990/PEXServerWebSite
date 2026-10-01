@@ -10,12 +10,21 @@ type StatusCardProps = {
   portLabel: string;
 };
 
-export function StatusCard({ title, panelLabel, statusState, fallbackSoftware, addressLabel, portLabel }: StatusCardProps) {
+export function StatusCard({
+  title,
+  panelLabel,
+  statusState,
+  fallbackSoftware,
+  addressLabel,
+  portLabel,
+}: StatusCardProps) {
   const { status, loading, error } = statusState;
   const online = Boolean(status?.online);
-  const playerCount = status?.players?.online ?? 0;
+  const playerCount = status?.players?.online ?? "—";
   const maxPlayers = status?.players?.max ?? "?";
-  const version = status?.protocol?.name || status?.version || "Unknown";
+  const version = status?.online
+    ? status?.version || status?.protocol?.name || "公開情報なし"
+    : "—";
   const motd = status?.motd?.clean?.join(" ") || "PEXserver";
   const software = status?.software || status?.gamemode || fallbackSoftware;
 
@@ -30,7 +39,15 @@ export function StatusCard({ title, panelLabel, statusState, fallbackSoftware, a
       </div>
 
       <div className="status-banner">
-        <span>{loading ? "Checking..." : online ? "稼働中" : "停止中"}</span>
+        <span>
+          {loading
+            ? "確認中…"
+            : error
+              ? "取得できません"
+              : online
+                ? "稼働中"
+                : "停止中"}
+        </span>
         <strong>
           {playerCount} / {maxPlayers}
         </strong>

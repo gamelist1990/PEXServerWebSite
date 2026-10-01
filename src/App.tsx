@@ -1,4 +1,12 @@
-import { BrowserRouter, NavLink, Route, Routes, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import {
+  BrowserRouter,
+  Navigate,
+  NavLink,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
 import { SiteHeader } from "./components/layout/SiteHeader";
 import { DISCORD_INVITE_URL } from "./app/constants";
 import { AboutPage } from "./pages/AboutPage";
@@ -10,7 +18,8 @@ import { FerrumProxyPage } from "./pages/FerrumProxyPage";
 import { PexServerSoftwarePage } from "./pages/PexServerSoftwarePage";
 import { StaffPage } from "./pages/StaffPage";
 import { StatusPage } from "./pages/StatusPage";
-import { ToolsPage } from "./pages/ToolsPage";
+import { DownloadsPage } from "./pages/DownloadsPage";
+import { SurvivalPage } from "./pages/SurvivalPage";
 
 function App() {
   return (
@@ -22,24 +31,64 @@ function App() {
 
 function AppLayout() {
   const location = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, [location.pathname]);
   const isToolsRoute = location.pathname.startsWith("/tools");
 
   return (
     <div className="app-shell">
       <div className="page-noise" />
+      <a className="skip-link" href="#main-content">
+        本文へスキップ
+      </a>
       <SiteHeader />
-      <main className={isToolsRoute ? "app-main app-main-wide" : "app-main"}>
+      <main
+        id="main-content"
+        className={isToolsRoute ? "app-main app-main-wide" : "app-main"}
+      >
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/status" element={<StatusPage />} />
           <Route path="/guide" element={<GuidePage />} />
-          <Route path="/tools" element={<ToolsPage />} />
-          <Route path="/tools/pexserver" element={<PexServerSoftwarePage />} />
-          <Route path="/tools/pexserver/ferrumproxy" element={<FerrumProxyPage />} />
-          <Route path="/tools/bedrock-textures" element={<BedrockTexturePage />} />
+          <Route path="/downloads" element={<DownloadsPage />} />
+          <Route path="/survival" element={<SurvivalPage />} />
+          <Route
+            path="/downloads/pexserver"
+            element={<PexServerSoftwarePage />}
+          />
+          <Route
+            path="/downloads/pexserver/ferrumproxy"
+            element={<FerrumProxyPage />}
+          />
+          <Route path="/tools" element={<Navigate to="/downloads" replace />} />
+          <Route
+            path="/tools/pexserver"
+            element={<Navigate to="/downloads/pexserver" replace />}
+          />
+          <Route
+            path="/tools/pexserver/ferrumproxy"
+            element={<Navigate to="/downloads/pexserver/ferrumproxy" replace />}
+          />
+          <Route
+            path="/tools/bedrock-textures"
+            element={<BedrockTexturePage />}
+          />
           <Route path="/tools/sounds" element={<MinecraftSoundPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/staff" element={<StaffPage />} />
+          <Route
+            path="*"
+            element={
+              <section className="panel section-hero">
+                <p className="eyebrow">404</p>
+                <h1>ページが見つかりません</h1>
+                <NavLink className="primary-button" to="/">
+                  ホームへ戻る
+                </NavLink>
+              </section>
+            }
+          />
         </Routes>
       </main>
       <SiteFooter />
@@ -57,9 +106,12 @@ function SiteFooter() {
       <nav className="site-footer-links" aria-label="フッターナビゲーション">
         <NavLink to="/status">Status</NavLink>
         <NavLink to="/guide">Guide</NavLink>
-        <NavLink to="/tools">Tools</NavLink>
+        <NavLink to="/downloads">Downloads</NavLink>
+        <NavLink to="/survival">Survival</NavLink>
         <NavLink to="/staff">Staff</NavLink>
-        <a href={DISCORD_INVITE_URL} target="_blank" rel="noreferrer">Discord</a>
+        <a href={DISCORD_INVITE_URL} target="_blank" rel="noreferrer">
+          Discord
+        </a>
       </nav>
       <p className="site-footer-copy">© {new Date().getFullYear()} PEXserver</p>
     </footer>

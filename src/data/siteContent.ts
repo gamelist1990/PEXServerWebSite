@@ -1,7 +1,5 @@
-import { bedrockTextureCount } from "./generated/bedrockTextureMeta";
-import { minecraftSoundAssetVersion } from "./generated/minecraftSoundMeta";
 import { SERVER_ADDRESS } from "../app/constants";
-import type { FeatureCard, GameMode, GuideStep, ServerFact, ToolCard } from "../app/types";
+import type { FeatureCard, GameMode, GuideStep, ServerFact } from "../app/types";
 
 // 以下の紹介文は PEXserver 本体プラグイン（Paper / src/main/java/.../pexserver）の
 // 実装（Project/Game/Games, Project/Pot, Project/customItem/Duel）を参照して記載しています。
@@ -89,33 +87,9 @@ export const gameModes: GameMode[] = [
 
 export const serverFacts: ServerFact[] = [
   { label: "Platform", value: "Java / Bedrock 両対応" },
-  { label: "Minecraft", value: "1.21.11" },
+  { label: "Servers", value: "PvP / Mini Games + Survival" },
   { label: "Core", value: "Paper Plugin (Java 25)" },
   { label: "Bridge", value: "Geyser / Floodgate" }
-];
-
-export const toolCards: ToolCard[] = [
-  {
-    eyebrow: "PEXServer",
-    title: "PEXServerで使用しているソフトウェア",
-    body: "PEXServerで使用しているソフトウェアの中で、オープンソースとして公開しているものの配布場所です。",
-    to: "/tools/pexserver",
-    metric: "Open Source"
-  },
-  {
-    eyebrow: "Visual Tool",
-    title: "Bedrock Texture Explorer",
-    body: "Bedrock vanilla のテクスチャを検索して、`Icon.XXXX` や texture path をその場でコピーできます。",
-    to: "/tools/bedrock-textures",
-    metric: `${bedrockTextureCount} textures`
-  },
-  {
-    eyebrow: "Audio Tool",
-    title: "Minecraft Sound Explorer",
-    body: "vanilla のサウンドキーを検索して、その場で再生しながら `minecraft:...` や `/playsound` を確認できます。",
-    to: "/tools/sounds",
-    metric: `${minecraftSoundAssetVersion} live data`
-  }
 ];
 
 export const bedrockServerAddSteps: GuideStep[] = [

@@ -4,7 +4,7 @@ import { pexServerSoftware, pexServerSoftwareIntro } from "../data/pexserversoft
 import { useMetaTags } from "../hooks/useMetaTags";
 
 export function PexServerSoftwarePage() {
-  useMetaTags(pageMetadata["/tools/pexserver"]);
+  useMetaTags(pageMetadata["/downloads/pexserver"]);
 
   return (
     <section className="page-grid">
@@ -59,7 +59,7 @@ export function PexServerSoftwarePage() {
         </section>
       ))}
 
-      <NavLink className="secondary-button software-back-link" to="/tools">
+      <NavLink className="secondary-button software-back-link" to="/downloads">
         Toolsへ戻る
       </NavLink>
     </section>

@@ -1,7 +1,7 @@
 import type { PexServerSoftware } from "../app/types";
 
 export const pexServerSoftwareIntro = {
-  eyebrow: "Tools / PEXServer",
+  eyebrow: "Downloads / PEXServer",
   title: "PEXServerで使用しているソフトウェア",
   body: "PEXServerで使用しているソフトウェアの中で、オープンソースソフトウェアとして公開しているものの配布場所です。"
 };
@@ -13,7 +13,7 @@ export const pexServerSoftware: PexServerSoftware[] = [
     badge: "Open Source",
     description:
       "FerrumProxy は現在、PEXServer のネットワーク通信のコアを支えており、プレイヤーをバックエンドサーバーに適切に転送させています。",
-    detailPath: "/tools/pexserver/ferrumproxy",
+    detailPath: "/downloads/pexserver/ferrumproxy",
     facts: [
       {
         label: "Role",

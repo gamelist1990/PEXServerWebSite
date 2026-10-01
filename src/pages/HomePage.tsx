@@ -1,83 +1,88 @@
-import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { DISCORD_INVITE_URL, SERVER_ADDRESS } from "../app/constants";
-import { gameModes, serverFacts } from "../data/siteContent";
+import { gameModes } from "../data/siteContent";
+import { DISCORD_INVITE_URL } from "../app/constants";
+import { ServerDirectory } from "../components/common/ServerDirectory";
 import { useMetaTags } from "../hooks/useMetaTags";
 import { pageMetadata } from "../data/pageMetadata";
-
 export function HomePage() {
-  useMetaTags(pageMetadata['/']);
-  const [copied, setCopied] = useState(false);
-
-  useEffect(() => {
-    if (!copied) {
-      return undefined;
-    }
-    const timer = window.setTimeout(() => setCopied(false), 1800);
-    return () => window.clearTimeout(timer);
-  }, [copied]);
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(SERVER_ADDRESS);
-      setCopied(true);
-    } catch {
-      setCopied(false);
-    }
-  };
-
+  useMetaTags(pageMetadata["/"]);
   return (
-    <section className="page-grid page-grid-home">
-      <section className="hero-panel">
-        <div className="hero-visual">
-          <img className="hero-cover" src={`${import.meta.env.BASE_URL}server-header.png`} alt="PEXserver server view" />
-          <div className="hero-overlay">
-            <p className="eyebrow">Official Website</p>
-            <h1>PEXserver</h1>
-            <p className="hero-subtitle">
-              Minecraft Java / Bedrock で運営している小規模のマイクラサーバー。Duel・Pot PvP・ミニゲームを中心に遊べます。
-            </p>
+    <div className="page-grid renewal-home">
+      <section className="renewal-hero">
+        <div className="renewal-hero-copy">
+          <p className="eyebrow">MINECRAFT / JAVA & BEDROCK</p>
+          <h1>
+            遊びたい世界が、
+            <br />
+            <em>ここにある。</em>
+          </h1>
+          <p className="hero-lead">
+            勝負を楽しむ日も、のんびり冒険する日も。
+            <br />
+            PEXserverで、あなたの遊び方を見つけよう。
+          </p>
+          <div className="hero-link-row">
+            <a className="primary-button" href="#servers">
+              サーバーを選ぶ <span>↗</span>
+            </a>
+            <NavLink className="text-link" to="/downloads">
+              配布ページを見る →
+            </NavLink>
+          </div>
+          <div className="hero-caption">
+            <span className="caption-line" /> TWO SERVERS. YOUR NEXT ADVENTURE.
           </div>
         </div>
-
-        <div className="hero-actions">
-          <div className="hero-address">
-            <span>Server Address</span>
-            <button className="hero-address-copy" onClick={handleCopy} type="button">
-              <code>{SERVER_ADDRESS}</code>
-              <em>{copied ? "コピー済み" : "コピー"}</em>
-            </button>
-            <small>Bedrock Port: 25565 / Java・Bedrock 両対応</small>
+        <div className="renewal-hero-art">
+          <img
+            src={`${import.meta.env.BASE_URL}server-header.png`}
+            alt="PEXserverのMinecraftワールド"
+            width="1200"
+            height="800"
+          />
+          <div className="hero-art-label">
+            <span>EXPLORE THE NETWORK</span>
+            <strong>
+              PEX<span>server</span>
+            </strong>
+            <small>遊ぶ。つながる。つくる。</small>
           </div>
-          <NavLink className="primary-button" to="/guide">参加方法を見る</NavLink>
-          <NavLink className="secondary-button" to="/tools">ツールを見る</NavLink>
-          <a className="secondary-button" href={DISCORD_INVITE_URL} target="_blank" rel="noreferrer">
-            Discord に参加
-          </a>
         </div>
       </section>
-
-      <section className="server-facts">
-        {serverFacts.map((fact) => (
-          <div className="server-fact" key={fact.label}>
-            <span>{fact.label}</span>
-            <strong>{fact.value}</strong>
+      <section id="servers" className="directory-section">
+        <div className="section-heading heading-row">
+          <div>
+            <p className="eyebrow">01 / OUR SERVERS</p>
+            <h2>今日は、どこで遊ぶ？</h2>
           </div>
-        ))}
+          <NavLink className="text-link" to="/status">
+            稼働状況を詳しく見る ↗
+          </NavLink>
+        </div>
+        <ServerDirectory />
+        <p className="directory-note">
+          バージョン・稼働状況は公開応答から自動取得。取得できない場合の参考バージョンは26.3です。
+        </p>
       </section>
-
-      <section className="section-block">
-        <div className="section-heading">
-          <p className="eyebrow">Game Modes</p>
-          <h2>PEXserver で遊べるゲーム</h2>
+      <section className="games-section">
+        <div className="section-heading heading-row">
+          <div>
+            <p className="eyebrow">02 / GAME MODES</p>
+            <h2>一戦から、夢中になれる。</h2>
+          </div>
           <p className="section-text">
-            対人戦の Duel や Pot PvP から、大人数で楽しむパーティゲームまで。実装済みのモードを紹介します。
+            pexserver.comで遊べる対戦・ミニゲーム。
           </p>
         </div>
         <div className="mode-grid">
-          {gameModes.map((mode) => (
+          {gameModes.map((mode, i) => (
             <article className="mode-card" key={mode.name}>
-              <span className="mode-category">{mode.category}</span>
+              <div className="mode-card-top">
+                <span className="mode-category">{mode.category}</span>
+                <span className="mode-number">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+              </div>
               <h3>{mode.name}</h3>
               <p>{mode.body}</p>
               <div className="mode-tags">
@@ -89,6 +94,21 @@ export function HomePage() {
           ))}
         </div>
       </section>
-    </section>
+      <section className="community-banner">
+        <div>
+          <p className="eyebrow">STAY CONNECTED</p>
+          <h2>次の遊びは、みんなと。</h2>
+          <p>お知らせやサーバーの案内はDiscordで。</p>
+        </div>
+        <a
+          className="primary-button"
+          href={DISCORD_INVITE_URL}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Discordに参加 ↗
+        </a>
+      </section>
+    </div>
   );
 }

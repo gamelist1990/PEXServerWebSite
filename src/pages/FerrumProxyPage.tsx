@@ -61,13 +61,13 @@ const featureCards = [
 ];
 
 export function FerrumProxyPage() {
-  useMetaTags(pageMetadata["/tools/pexserver/ferrumproxy"]);
+  useMetaTags(pageMetadata["/downloads/pexserver/ferrumproxy"]);
 
   return (
     <section className="page-grid ferrum-page">
       <section className="panel ferrum-hero">
         <div>
-          <p className="eyebrow">Tools / PEXServer / FerrumProxy</p>
+          <p className="eyebrow">Downloads / PEXServer / FerrumProxy</p>
           <h2>FerrumProxy</h2>
           <p className="section-text">
             PEXServer のネットワーク公開・転送まわりを支える Rust 製プロキシです。使う人向けの Client、管理者向けの GUI、通信を転送する本体の3つに分かれています。
@@ -199,7 +199,7 @@ export function FerrumProxyPage() {
         </div>
       </section>
 
-      <NavLink className="secondary-button software-back-link" to="/tools/pexserver">
+      <NavLink className="secondary-button software-back-link" to="/downloads/pexserver">
         PEXServerソフトウェア一覧へ戻る
       </NavLink>
     </section>

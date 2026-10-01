@@ -27,7 +27,7 @@ export function AboutPage() {
         <h2>PEXserver について</h2>
         <p className="section-text">
           PEXserver は Minecraft の Java 版 / Bedrock 版で運営している小規模のマイクラサーバーです。
-          自作の Paper プラグイン（Minecraft 1.21.11 / Java 25）を中核に、Duel・Pot PvP・ミニゲームを中心とした遊びを提供しています。
+          自作の Paper プラグイン（Java 25）を中核に、Duel・Pot PvP・ミニゲームに加え、play.pexserver.comでサバイバルも提供しています。対応バージョンはステータスページで自動取得しています。
         </p>
       </section>
 
