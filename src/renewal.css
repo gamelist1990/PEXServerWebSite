@@ -1,10 +1,13 @@
-/* PEXserver renewal — warm paper, copper and charcoal */
+/* PEXserver renewal — warm paper, copper and blue actions */
 :root {
   --ink: #25282e;
   --muted: #68676a;
   --accent: #a7472b;
-  --brand: #30343b;
-  --green: #30343b;
+  --brand: #0b57d0;
+  --action-hover: #0842a0;
+  --action-soft: #e8f0fe;
+  --action-outline: #a8c7fa;
+  --green: #0b57d0;
   --panel: #fffcf6;
   --glass: #faf6ed;
   --glass-strong: #faf6ed;
@@ -74,7 +77,7 @@ a {
   box-shadow: none;
 }
 .nav-link {
-  border-radius: 6px;
+  border-radius: 24px;
   padding: 10px 12px;
   min-height: 44px;
 }
@@ -84,20 +87,20 @@ a {
 .nav-link:hover,
 .nav-link.is-active {
   transform: none;
-  background: #e9e4dc;
+  background: var(--action-soft);
   border-color: transparent;
   color: var(--brand);
 }
 .nav-discord {
   background: var(--brand);
   box-shadow: none;
-  border-radius: 6px;
+  border-radius: 24px;
   font-size: 0.82rem;
 }
 .nav-discord:hover {
   transform: none;
   box-shadow: none;
-  background: #171b22;
+  background: var(--action-hover);
 }
 .page-grid {
   gap: 40px;
@@ -137,7 +140,7 @@ a {
 }
 .primary-button,
 .secondary-button {
-  border-radius: 6px;
+  border-radius: 24px;
   min-height: 48px;
   padding: 12px 22px;
   gap: 18px;
@@ -151,18 +154,19 @@ a {
   color: #fff;
 }
 .primary-button:hover {
-  background: #171b22;
+  background: var(--action-hover);
   transform: none;
   box-shadow: none;
 }
 .secondary-button {
-  background: transparent;
-  border-color: var(--line);
+  background: #fff;
+  color: var(--brand);
+  border-color: var(--action-outline);
 }
 .secondary-button:hover {
   transform: none;
   box-shadow: none;
-  background: #e9e4dc;
+  background: var(--action-soft);
 }
 .text-link {
   display: inline-flex;
@@ -230,7 +234,7 @@ a {
   height: 520px;
   overflow: hidden;
   border-radius: 12px 100px 12px 12px;
-  background: var(--brand);
+  background: #30343b;
 }
 .renewal-hero-art img {
   width: 100%;
@@ -370,8 +374,8 @@ a {
   gap: 12px;
   width: 100%;
   border: 1px solid var(--line);
-  background: #f0f0e6;
-  color: var(--ink);
+  background: var(--action-soft);
+  color: var(--action-hover);
   padding: 16px;
   border-radius: 6px;
   min-height: 56px;
@@ -383,7 +387,7 @@ a {
 }
 .address-copy:hover {
   border-color: var(--brand);
-  background: #ede5db;
+  background: #d3e3fd;
 }
 .copy-feedback {
   display: block;
@@ -496,12 +500,12 @@ a {
   border-bottom: 1px solid var(--line);
 }
 .download-filter button {
-  border: 1px solid var(--line);
-  border-radius: 5px;
+  border: 1px solid var(--action-outline);
+  border-radius: 24px;
   padding: 10px 22px;
   min-height: 44px;
-  color: var(--muted);
-  background: transparent;
+  color: var(--brand);
+  background: #fff;
   font-size: 0.84rem;
 }
 .download-filter button.selected {
@@ -987,4 +991,24 @@ a {
   .download-card-body h3 {
     font-size: 1.4rem;
   }
+}
+
+.primary-button:active,
+.nav-discord:active {
+  background: #062e6f;
+}
+.secondary-button:active,
+.address-copy:active {
+  background: #d3e3fd;
+}
+.primary-button,
+.secondary-button,
+.nav-link,
+.nav-discord,
+.address-copy,
+.download-filter button {
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .primary-button, .secondary-button, .nav-link, .nav-discord, .address-copy, .download-filter button { transition: none; }
 }
