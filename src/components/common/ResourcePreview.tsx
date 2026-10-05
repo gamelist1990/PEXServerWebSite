@@ -2,22 +2,22 @@ import { SITE_BASE_PATH } from "../../app/sitePaths";
 import { type DownloadResource, resourcePath } from "../../data/downloads";
 import { ShareTitle } from "../common/ShareTitle";
 export function ResourcePreview({ resource }: { resource: DownloadResource }) {
-  return resource.id === "cooldown-animation" ? (
-    <div className="download-preview cooldown-preview">
-      <span>{resource.eyebrow}</span>
-      <div className="cooldown-bars" aria-hidden="true">
-        {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
-          <i key={n} />
-        ))}
+  return resource.kind === "GEYSER EXTENSION" ? (
+    <div className="download-preview extension-preview">
+      <img
+        src={`${SITE_BASE_PATH}${resource.image}`}
+        alt={resource.id === "cooldown-animation"
+          ? "ダイヤの剣と攻撃のチャージを表す光の軌跡"
+          : "スキャンシールドで保護されたブロック型のプレイヤー"}
+        width={resource.imageWidth}
+        height={resource.imageHeight}
+      />
+      <div className="extension-preview-copy">
+        <span>{resource.eyebrow}</span>
+        <ShareTitle path={resourcePath(resource)} name={resource.name}>
+          <strong>{resource.id === "cooldown-animation" ? <>Cooldown<br />Animation</> : "CheckSkin"}</strong>
+        </ShareTitle>
       </div>
-      <ShareTitle path={resourcePath(resource)} name={resource.name}>
-        <strong>
-          Cooldown
-          <br />
-          Animation
-        </strong>
-      </ShareTitle>
-      <small>JAVA COMBAT → BEDROCK</small>
     </div>
   ) : (
     <div className="download-preview glass-preview">
