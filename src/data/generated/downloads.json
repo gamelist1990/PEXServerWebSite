@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-05T08:48:05.601464+00:00",
+  "updatedAt": "2026-10-05T09:04:34.062214+00:00",
   "resources": [
     {
       "id": "cooldown-animation",
@@ -8,7 +8,7 @@
       "shareTitle": "Cooldown Animation — Geyser向け攻撃クールダウン表示 (v1.3.0)",
       "kind": "GEYSER EXTENSION",
       "description": "Javaの攻撃クールダウンを、Bedrockプレイヤーの手元のアニメーションで表示。Geyser拡張・Paper連携・専用パックを組み合わせて使用します。",
-      "image": "GeyserPack/header-cooldown.png",
+      "image": "GeyserPack/header-cooldown-pixel.png",
       "tags": [
         "Geyser",
         "Paper連携",
@@ -45,7 +45,7 @@
       "shareTitle": "GeyserCheckSkin — 4D・透明スキン検査 (v1.1.0)",
       "kind": "GEYSER EXTENSION",
       "description": "Bedrockプレイヤーの4Dスキンや透明な身体を参加前に検査。小さな装飾のみ許可・4D全面禁止を設定でき、違反時はフォールバックスキンへの置換またはキックを選べます。",
-      "image": "GeyserPack/header-checkskin.png",
+      "image": "GeyserPack/header-checkskin-pixel.png",
       "tags": [
         "Geyser",
         "スキン検査",

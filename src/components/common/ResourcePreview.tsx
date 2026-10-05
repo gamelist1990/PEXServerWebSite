@@ -7,8 +7,8 @@ export function ResourcePreview({ resource }: { resource: DownloadResource }) {
       <img
         src={`${SITE_BASE_PATH}${resource.image}`}
         alt={resource.id === "cooldown-animation"
-          ? "ダイヤの剣と攻撃のチャージを表す光の軌跡"
-          : "スキャンシールドで保護されたブロック型のプレイヤー"}
+          ? "ダイヤの剣とクールダウンゲージのピクセルアート"
+          : "通常体型のプレイヤーとチェック付きシールドのピクセルアート"}
         width={resource.imageWidth}
         height={resource.imageHeight}
       />
