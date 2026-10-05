@@ -85,14 +85,14 @@ export function structuredData(config: MetaTagsConfig) {
   if (resource)
     graph.push({
       "@type":
-        resource.id === "cooldown-animation"
+        resource.kind === "GEYSER EXTENSION"
           ? "SoftwareApplication"
           : "CreativeWork",
       name: resource.name,
       description: resource.description,
       url,
       image: new URL(resource.image, `${SITE_URL}/`).href,
-      ...(resource.id === "cooldown-animation"
+      ...(resource.kind === "GEYSER EXTENSION"
         ? {
             applicationCategory: "GameApplication",
             softwareVersion: resource.version,

@@ -19,6 +19,22 @@
     }
   },
   {
+    "id": "check-skin",
+    "name": "GeyserCheckSkin",
+    "shareTitle": "GeyserCheckSkin — 4D・透明スキン検査",
+    "kind": "GEYSER EXTENSION",
+    "description": "Bedrockプレイヤーの4Dスキンや透明な身体を参加前に検査。小さな装飾のみ許可・4D全面禁止を設定でき、違反時はフォールバックスキンへの置換またはキックを選べます。",
+    "image": "GeyserPack/CheckSkin.png",
+    "tags": ["Geyser", "スキン検査", "PvP"],
+    "eyebrow": "SKIN PROTECTION",
+    "source": {
+      "type": "github-release",
+      "repository": "gamelist1990/GeyserCheckSkin",
+      "assetPattern": "^GeyserCheckSkin-[0-9].*\\.jar$",
+      "guide": "README.md"
+    }
+  },
+  {
     "id": "2d-glass",
     "name": "2D Glass",
     "shareTitle": "2D Glass — Bedrock向けガラス板リソースパック",

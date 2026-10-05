@@ -1,43 +1,81 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-01T10:25:29.545038+00:00",
+  "updatedAt": "2026-10-05T08:40:00.066073+00:00",
   "resources": [
     {
       "id": "cooldown-animation",
       "name": "CooldownAnimation",
-      "shareTitle": "Cooldown Animation — Geyser向け攻撃クールダウン表示 (v1.2.0)",
+      "shareTitle": "Cooldown Animation — Geyser向け攻撃クールダウン表示 (v1.3.0)",
       "kind": "GEYSER EXTENSION",
       "description": "Javaの攻撃クールダウンを、Bedrockプレイヤーの手元のアニメーションで表示。Geyser拡張・Paper連携・専用パックを組み合わせて使用します。",
       "image": "GeyserPack/CooldownAnimation.png",
       "tags": [
         "Geyser",
         "Paper連携",
-        "v1.2.0"
+        "v1.3.0"
       ],
       "eyebrow": "ATTACK COOLDOWN",
-      "version": "1.2.0",
-      "publishedAt": "2026-09-30T16:12:43Z",
-      "releaseUrl": "https://github.com/gamelist1990/GeyserCooldownAnimation/releases/tag/v1.2.0",
-      "note": "v1.2.0 の導入条件と更新内容は、リリース情報と導入ガイドをご確認ください。",
+      "version": "1.3.0",
+      "publishedAt": "2026-10-01T14:20:30Z",
+      "releaseUrl": "https://github.com/gamelist1990/GeyserCooldownAnimation/releases/tag/v1.3.0",
+      "note": "v1.3.0 の導入条件と更新内容は、リリース情報と導入ガイドをご確認ください。",
       "links": [
         {
-          "label": "最新版をダウンロード (v1.2.0) ↗",
-          "href": "https://github.com/gamelist1990/GeyserCooldownAnimation/releases/download/v1.2.0/GeyserCooldownAnimation-1.2.0.zip",
+          "label": "最新版をダウンロード (v1.3.0) ↗",
+          "href": "https://github.com/gamelist1990/GeyserCooldownAnimation/releases/download/v1.3.0/GeyserCooldownAnimation-1.3.0.zip",
           "external": true
         },
         {
           "label": "導入ガイド",
-          "href": "https://github.com/gamelist1990/GeyserCooldownAnimation/blob/v1.2.0/INSTALL.md",
+          "href": "https://github.com/gamelist1990/GeyserCooldownAnimation/blob/v1.3.0/INSTALL.md",
           "external": true
         },
         {
           "label": "リリース情報",
-          "href": "https://github.com/gamelist1990/GeyserCooldownAnimation/releases/tag/v1.2.0",
+          "href": "https://github.com/gamelist1990/GeyserCooldownAnimation/releases/tag/v1.3.0",
           "external": true
         }
       ],
       "imageWidth": 456,
       "imageHeight": 456
+    },
+    {
+      "id": "check-skin",
+      "name": "GeyserCheckSkin",
+      "shareTitle": "GeyserCheckSkin — 4D・透明スキン検査 (v1.1.0)",
+      "kind": "GEYSER EXTENSION",
+      "description": "Bedrockプレイヤーの4Dスキンや透明な身体を参加前に検査。小さな装飾のみ許可・4D全面禁止を設定でき、違反時はフォールバックスキンへの置換またはキックを選べます。",
+      "image": "GeyserPack/CheckSkin.png",
+      "tags": [
+        "Geyser",
+        "スキン検査",
+        "PvP",
+        "v1.1.0"
+      ],
+      "eyebrow": "SKIN PROTECTION",
+      "version": "1.1.0",
+      "publishedAt": "2026-10-05T08:32:35Z",
+      "releaseUrl": "https://github.com/gamelist1990/GeyserCheckSkin/releases/tag/v1.1.0",
+      "note": "v1.1.0 の導入条件と更新内容は、リリース情報と導入ガイドをご確認ください。",
+      "links": [
+        {
+          "label": "最新版をダウンロード (v1.1.0) ↗",
+          "href": "https://github.com/gamelist1990/GeyserCheckSkin/releases/download/v1.1.0/GeyserCheckSkin-1.1.0.jar",
+          "external": true
+        },
+        {
+          "label": "導入ガイド",
+          "href": "https://github.com/gamelist1990/GeyserCheckSkin/blob/v1.1.0/README.md",
+          "external": true
+        },
+        {
+          "label": "リリース情報",
+          "href": "https://github.com/gamelist1990/GeyserCheckSkin/releases/tag/v1.1.0",
+          "external": true
+        }
+      ],
+      "imageWidth": 64,
+      "imageHeight": 64
     },
     {
       "id": "2d-glass",

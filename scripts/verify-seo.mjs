@@ -50,6 +50,7 @@ assert.equal(
 assert.equal(meta(read(""), "twitter:image").length, 0);
 for (const [id, name] of [
   ["cooldown-animation", "Cooldown Animation"],
+  ["check-skin", "GeyserCheckSkin"],
   ["2d-glass", "2D Glass"],
 ]) {
   const html = read(`downloads/geyser/${id}`);
@@ -77,6 +78,10 @@ assert.match(
 assert.match(
   sitemap,
   /https:\/\/pexserver\.com\/downloads\/geyser\/2d-glass\//,
+);
+assert.match(
+  sitemap,
+  /https:\/\/pexserver\.com\/downloads\/geyser\/check-skin\//,
 );
 assert.ok(!sitemap.includes("/tools/pexserver"));
 assert.match(

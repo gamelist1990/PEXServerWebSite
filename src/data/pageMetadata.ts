@@ -39,7 +39,7 @@ export const pageMetadata: Record<string, MetaTagsConfig> = {
   "/downloads": {
     title: "配布 - PEXserver",
     description:
-      "Geyser向けCooldownAnimation・2D GlassとPEXserverの公開ソフトウェアを配布。",
+      "Geyser向けCooldownAnimation・GeyserCheckSkin・2D GlassとPEXserverの公開ソフトウェアを配布。",
     ogTitle: "配布 - PEXserver",
     ogDescription:
       "Geyser拡張・リソースパック・公開ソフトウェアのダウンロード。",
