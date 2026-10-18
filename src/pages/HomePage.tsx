@@ -95,6 +95,16 @@ export function HomePage() {
           ))}
         </div>
       </section>
+      <section className="community-banner" aria-labelledby="fileshare-heading">
+        <div>
+          <p className="eyebrow">FILESHARE / SHARED STORAGE</p>
+          <h2 id="fileshare-heading">ファイルを、つなぐ。</h2>
+          <p>みんなの共有フォルダと、自分だけのプライベート空間。</p>
+        </div>
+        <a className="primary-button" href="https://share.pexserver.com/">
+          共有ストレージを開く ↗
+        </a>
+      </section>
       <section className="community-banner">
         <div>
           <p className="eyebrow">STAY CONNECTED</p>

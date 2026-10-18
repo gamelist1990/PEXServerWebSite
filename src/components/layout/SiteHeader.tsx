@@ -94,16 +94,8 @@ export function SiteHeader() {
         ref={linksRef}
         aria-label="メインナビゲーション"
       >
-        {navItems.map((item) => (
-          <NavLink
-            key={item.to}
-            to={item.to}
-            end={item.end}
-            className={({ isActive }) =>
-              `nav-link${isActive ? " is-active" : ""}`
-            }
-            onClick={close}
-          >
+        {navItems.map((item) => {
+          const content = <>
             <span className="nav-link-icon" aria-hidden="true">
               <svg
                 width="20"
@@ -117,7 +109,9 @@ export function SiteHeader() {
               >
                 <path
                   d={
-                    item.to === "/"
+                    item.external
+                      ? "M3 7h7l2 2h9v11H3ZM3 7V4h7l2 3"
+                      : item.to === "/"
                       ? "M3 10 12 3l9 7v11h-6v-7H9v7H3Z"
                       : item.to === "/status"
                         ? "M3 12h4l3-8 4 16 3-8h4"
@@ -136,8 +130,19 @@ export function SiteHeader() {
               <strong>{item.label}</strong>
               <small>{item.subtitle}</small>
             </span>
-          </NavLink>
-        ))}
+          </>;
+          return item.external ? (
+            <a key={item.to} href={item.to} className="nav-link" onClick={close}>
+              {content}
+            </a>
+          ) : (
+            <NavLink key={item.to} to={item.to} end={item.end}
+              className={({ isActive }) => `nav-link${isActive ? " is-active" : ""}`}
+              onClick={close}>
+              {content}
+            </NavLink>
+          );
+        })}
       </nav>
 
       <div className="nav-cta">
