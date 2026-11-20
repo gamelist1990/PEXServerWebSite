@@ -82,24 +82,27 @@ export function structuredData(config: MetaTagsConfig) {
   const resource = downloadResources.find(
     (item) => resourcePath(item) === config.canonicalPath,
   );
-  if (resource)
+  if (resource) {
+    const software =
+      resource.kind === "GEYSER EXTENSION" || resource.kind === "CLIENT MOD";
     graph.push({
-      "@type":
-        resource.kind === "GEYSER EXTENSION"
-          ? "SoftwareApplication"
-          : "CreativeWork",
+      "@type": software ? "SoftwareApplication" : "CreativeWork",
       name: resource.name,
       description: resource.description,
       url,
       image: new URL(resource.image, `${SITE_URL}/`).href,
-      ...(resource.kind === "GEYSER EXTENSION"
+      ...(software
         ? {
             applicationCategory: "GameApplication",
             softwareVersion: resource.version,
-            operatingSystem: "Geyser / Minecraft Bedrock Edition",
+            operatingSystem:
+              resource.kind === "CLIENT MOD"
+                ? "Minecraft Bedrock Edition (Windows)"
+                : "Geyser / Minecraft Bedrock Edition",
             downloadUrl: resource.links[0].href,
           }
         : {}),
     });
+  }
   return { "@context": "https://schema.org", "@graph": graph };
 }

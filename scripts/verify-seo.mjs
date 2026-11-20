@@ -105,7 +105,8 @@ assert.deepEqual(
   "Public JSON and built catalog must match",
 );
 for (const resource of catalog.resources) {
-  const html = read(`downloads/geyser/${resource.id}`);
+  const segment = resource.category ?? "geyser";
+  const html = read(`downloads/${segment}/${resource.id}`);
   assert.ok(
     meta(html, "og:title")[0].includes(`v${resource.version}`),
     "OG title must contain the generated version",

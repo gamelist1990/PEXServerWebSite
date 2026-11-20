@@ -2,14 +2,56 @@ import { SITE_BASE_PATH } from "../app/sitePaths";
 import { NavLink } from "react-router-dom";
 import { gameModes } from "../data/siteContent";
 import { DISCORD_INVITE_URL } from "../app/constants";
+import { servers, statusEndpoint } from "../app/servers";
 import { ServerDirectory } from "../components/common/ServerDirectory";
+import { StatusStrip } from "../components/common/StatusStrip";
+import { useServerStatus } from "../hooks/useServerStatus";
 import { useMetaTags } from "../hooks/useMetaTags";
 import { pageMetadata } from "../data/pageMetadata";
+
+function HeroStatus() {
+  const network = useServerStatus(statusEndpoint(servers[0]));
+  const survival = useServerStatus(statusEndpoint(servers[1]));
+  const states = [network, survival];
+  const loading = states.every((state) => state.loading);
+  const onlineCount = states.filter((state) => state.status?.online).length;
+  const players = states.reduce(
+    (total, state) => total + (state.status?.players?.online ?? 0),
+    0,
+  );
+  return (
+    <span className={`hero-status ${onlineCount > 0 ? "online" : ""}`}>
+      <span className="hero-status-dot" aria-hidden="true" />
+      {loading
+        ? "稼働状況を確認中"
+        : onlineCount > 0
+          ? `稼働中 · ${players} 人が参加中`
+          : "現在オフライン"}
+    </span>
+  );
+}
+
 export function HomePage() {
   useMetaTags(pageMetadata["/"]);
   return (
     <div className="page-grid renewal-home">
       <section className="renewal-hero">
+        <div className="hero-topbar">
+          <div className="hero-brand">
+            <strong>
+              PEX<span>server</span>
+            </strong>
+            <HeroStatus />
+          </div>
+          <a
+            className="hero-discord"
+            href={DISCORD_INVITE_URL}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Discordに参加 ↗
+          </a>
+        </div>
         <div className="renewal-hero-copy">
           <p className="eyebrow">MINECRAFT / JAVA & BEDROCK</p>
           <h1>
@@ -22,14 +64,6 @@ export function HomePage() {
             <br />
             PEXserverで、あなたの遊び方を見つけよう。
           </p>
-          <div className="hero-link-row">
-            <a className="primary-button" href={`${SITE_BASE_PATH}#servers`}>
-              サーバーを選ぶ <span>↗</span>
-            </a>
-            <NavLink className="text-link" to="/downloads">
-              配布ページを見る →
-            </NavLink>
-          </div>
           <div className="hero-caption">
             <span className="caption-line" /> TWO SERVERS. YOUR NEXT ADVENTURE.
           </div>
@@ -49,7 +83,16 @@ export function HomePage() {
             <small>遊ぶ。つながる。つくる。</small>
           </div>
         </div>
+        <div className="hero-cta-row">
+          <NavLink className="text-link" to="/downloads">
+            配布ページを見る →
+          </NavLink>
+          <a className="primary-button" href={`${SITE_BASE_PATH}#servers`}>
+            サーバーを選ぶ <span>↗</span>
+          </a>
+        </div>
       </section>
+      <StatusStrip />
       <section id="servers" className="directory-section">
         <div className="section-heading heading-row">
           <div>
@@ -105,10 +148,13 @@ export function HomePage() {
           共有ストレージを開く ↗
         </a>
       </section>
-      <section className="community-banner">
+      <section
+        className="community-banner community-banner-discord"
+        aria-labelledby="discord-heading"
+      >
         <div>
           <p className="eyebrow">STAY CONNECTED</p>
-          <h2>次の遊びは、みんなと。</h2>
+          <h2 id="discord-heading">次の遊びは、みんなと。</h2>
           <p>お知らせやサーバーの案内はDiscordで。</p>
         </div>
         <a

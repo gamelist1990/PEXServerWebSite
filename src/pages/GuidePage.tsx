@@ -69,9 +69,10 @@ export function GuidePage() {
           </p>
         </div>
         <div className="guide-steps-grid">
-          {bedrockServerAddSteps.map((step) => (
+          {bedrockServerAddSteps.map((step, index) => (
             <GuideStepCard
               key={`bedrock-server-${step.title}`}
+              index={index}
               title={step.title}
               body={step.body
                 .split("pexserver.com")
@@ -93,9 +94,10 @@ export function GuidePage() {
             </p>
           </div>
           <div className="guide-steps-grid">
-            {bedrockFriendAddSteps.map((step) => (
+            {bedrockFriendAddSteps.map((step, index) => (
               <GuideStepCard
                 key={`bedrock-friend-${step.title}`}
+                index={index}
                 title={step.title}
                 body={step.body.split("pexserver.com").join(server.address)}
                 image={step.image}
@@ -115,9 +117,10 @@ export function GuidePage() {
           </p>
         </div>
         <div className="guide-steps-grid">
-          {javaJoinSteps.map((step) => (
+          {javaJoinSteps.map((step, index) => (
             <GuideStepCard
               key={`java-${step.title}`}
+              index={index}
               title={step.title}
               body={step.body.split("pexserver.com").join(server.address)}
               image={step.image}

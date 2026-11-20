@@ -2051,3 +2051,41 @@ code {
     border-radius: 20px;
   }
 }
+
+/* API ban warning dialog (ApiBanDialog) */
+.api-ban-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(23, 23, 23, 0.55);
+  backdrop-filter: blur(4px);
+}
+
+.api-ban-dialog {
+  width: min(480px, 100%);
+  padding: 28px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  background: var(--glass-strong);
+  box-shadow: var(--shadow);
+  color: var(--ink);
+}
+
+.api-ban-dialog h2 {
+  margin: 6px 0 12px;
+  font-size: 1.4rem;
+}
+
+.api-ban-dialog p {
+  margin: 0 0 10px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.api-ban-dialog .primary-button {
+  margin-top: 10px;
+}

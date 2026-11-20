@@ -44,6 +44,24 @@ def release_resource(presentation, source, release):
     }
 
 
+def static_resource(presentation, source):
+    """A resource whose release is managed outside the sync (e.g. a project
+    releases page). Version, links and release URL are taken verbatim from
+    the source definition so the catalog entry survives regeneration."""
+    version = source.get('version')
+    links = source.get('links')
+    if not isinstance(version, str) or not version:
+        raise ValueError('Static resources need a version string')
+    if not isinstance(links, list) or not links:
+        raise ValueError('Static resources need at least one link')
+    resource = {**presentation, 'version': version, 'links': links}
+    if source.get('releaseUrl'):
+        resource['releaseUrl'] = source['releaseUrl']
+    if source.get('publishedAt'):
+        resource['publishedAt'] = source['publishedAt']
+    return resource
+
+
 def pack_resource(presentation, source, pack_path):
     with zipfile.ZipFile(pack_path) as archive:
         manifest = json.loads(archive.read('manifest.json').decode('utf-8-sig'))
@@ -76,6 +94,8 @@ def generate():
             with urllib.request.urlopen(request, timeout=30) as response:
                 release = json.load(response)
             resource = release_resource(presentation, source, release)
+        elif source['type'] == 'static':
+            resource = static_resource(presentation, source)
         elif source['type'] == 'local-pack':
             pack = (ROOT / source['path']).resolve()
             if not pack.is_relative_to(ROOT / 'public'):

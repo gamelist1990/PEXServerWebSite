@@ -9,6 +9,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import { SiteHeader } from "./components/layout/SiteHeader";
+import { ApiBanDialog } from "./components/common/ApiBanDialog";
 import { DISCORD_INVITE_URL } from "./app/constants";
 import { AboutPage } from "./pages/AboutPage";
 import { BedrockTexturePage } from "./pages/BedrockTexturePage";
@@ -21,6 +22,7 @@ import { StaffPage } from "./pages/StaffPage";
 import { StatusPage } from "./pages/StatusPage";
 import { DownloadsPage } from "./pages/DownloadsPage";
 import { SurvivalPage } from "./pages/SurvivalPage";
+import { DevelopersPage } from "./pages/DevelopersPage";
 
 import { DownloadDetailPage } from "./pages/DownloadDetailPage";
 import { downloadResources, resourcePath } from "./data/downloads";
@@ -50,6 +52,7 @@ function AppLayout() {
         本文へスキップ
       </a>
       <SiteHeader />
+      <ApiBanDialog />
       <main
         id="main-content"
         className={isToolsRoute ? "app-main app-main-wide" : "app-main"}
@@ -91,6 +94,7 @@ function AppLayout() {
           <Route path="/tools/sounds" element={<MinecraftSoundPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/staff" element={<StaffPage />} />
+          <Route path="/developers" element={<DevelopersPage />} />
           <Route
             path="*"
             element={
@@ -123,6 +127,7 @@ function SiteFooter() {
         <NavLink to="/downloads">Downloads</NavLink>
         <NavLink to="/survival">Survival</NavLink>
         <NavLink to="/staff">Staff</NavLink>
+        <NavLink to="/developers">Developers</NavLink>
         <a href={DISCORD_INVITE_URL} target="_blank" rel="noreferrer">
           Discord
         </a>

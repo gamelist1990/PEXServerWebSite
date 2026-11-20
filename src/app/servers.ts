@@ -8,7 +8,7 @@ export const servers = [
     description:
       "一瞬の勝負も、みんなで遊ぶ時間も。Duel・Pot PvP・20種類以上のミニゲーム。",
     fallbackVersion: "26.3",
-    bedrockPort: 25565,
+    bedrockPort: 19132,
   },
   {
     id: "survival",

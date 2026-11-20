@@ -39,10 +39,10 @@ export const pageMetadata: Record<string, MetaTagsConfig> = {
   "/downloads": {
     title: "配布 - PEXserver",
     description:
-      "Geyser向けCooldownAnimation・GeyserCheckSkin・2D GlassとPEXserverの公開ソフトウェアを配布。",
+      "Geyser向けCooldownAnimation・GeyserCheckSkin・2D Glass、Bedrock向けクライアントMod「DynamicClient」とPEXserverの公開ソフトウェアを配布。",
     ogTitle: "配布 - PEXserver",
     ogDescription:
-      "Geyser拡張・リソースパック・公開ソフトウェアのダウンロード。",
+      "Geyser拡張・リソースパック・クライアントMod・公開ソフトウェアのダウンロード。",
     ogType: "website",
     twitterCard: "summary",
   },
@@ -113,11 +113,21 @@ export const pageMetadata: Record<string, MetaTagsConfig> = {
     ogType: "website",
     twitterCard: "summary",
   },
+  "/developers": {
+    title: "開発者向け情報 - PEXserver",
+    description:
+      "PEXserver の Web API（api.pexserver.com）の仕組み、GitHub リポジトリ、BedrockDynamicSDK による Mod 開発の案内。",
+    ogTitle: "開発者向け情報 - PEXserver",
+    ogDescription:
+      "Web API の概要、公開リポジトリ、Mod 開発への入口をまとめた開発者向けページ。",
+    ogType: "website",
+    twitterCard: "summary",
+  },
 };
 
 for (const resource of downloadResources) {
   pageMetadata[resourcePath(resource)] = {
-    title: `${resource.name} v${resource.version} - Geyser配布 | PEXserver`,
+    title: `${resource.name} v${resource.version} - ${resource.kind === "CLIENT MOD" ? "クライアントMod配布" : "Geyser配布"} | PEXserver`,
     description: resource.description,
     ogTitle: resource.shareTitle,
     ogDescription: resource.description,

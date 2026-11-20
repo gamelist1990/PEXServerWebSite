@@ -7,12 +7,19 @@ import {
 } from "../components/common/ResourcePreview";
 import { useMetaTags } from "../hooks/useMetaTags";
 import { pageMetadata } from "../data/pageMetadata";
+import { useDownloads } from "../hooks/useDownloads";
 export function DownloadDetailPage({
-  resource,
+  resource: staticResource,
 }: {
   resource: DownloadResource;
 }) {
-  useMetaTags(pageMetadata[resourcePath(resource)]);
+  useMetaTags(pageMetadata[resourcePath(staticResource)]);
+  // Routes and metadata come from the bundled catalog (build time), but
+  // the rendered content prefers the fresher API copy of the same
+  // resource when downloads.get provides one.
+  const catalog = useDownloads();
+  const resource =
+    catalog.find((item) => item.id === staticResource.id) ?? staticResource;
   return (
     <div className="page-grid resource-detail">
       <NavLink className="text-link" to="/downloads">
@@ -40,6 +47,47 @@ export function DownloadDetailPage({
           </p>
         </div>
       </article>
+      {resource.features && resource.features.length > 0 && (
+        <section className="section-block">
+          <div className="section-heading">
+            <p className="eyebrow">FEATURES</p>
+            <h2>できること</h2>
+          </div>
+          <div className="feature-grid">
+            {resource.features.map((feature) => (
+              <article className="feature-card" key={feature.title}>
+                <h3>{feature.title}</h3>
+                <p>{feature.body}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+      {resource.installSteps && resource.installSteps.length > 0 && (
+        <section className="section-block">
+          <div className="section-heading">
+            <p className="eyebrow">INSTALL</p>
+            <h2>導入手順</h2>
+          </div>
+          <ol className="install-steps">
+            {resource.installSteps.map((step, index) => (
+              <li className="install-step" key={step}>
+                <span className="install-step-number">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <p>{step}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
+      {resource.warning && (
+        <section className="notes-panel warning-panel">
+          <p className="eyebrow">CAUTION</p>
+          <h2>注意事項</h2>
+          <p>{resource.warning}</p>
+        </section>
+      )}
     </div>
   );
 }

@@ -2,7 +2,22 @@ import { SITE_BASE_PATH } from "../../app/sitePaths";
 import { type DownloadResource, resourcePath } from "../../data/downloads";
 import { ShareTitle } from "../common/ShareTitle";
 export function ResourcePreview({ resource }: { resource: DownloadResource }) {
-  return resource.kind === "GEYSER EXTENSION" ? (
+  return resource.kind === "CLIENT MOD" ? (
+    <div className="download-preview mod-preview">
+      <img
+        src={`${SITE_BASE_PATH}${resource.image}`}
+        alt={`${resource.name}のキービジュアル`}
+        width={resource.imageWidth}
+        height={resource.imageHeight}
+      />
+      <div className="extension-preview-copy">
+        <span>{resource.eyebrow}</span>
+        <ShareTitle path={resourcePath(resource)} name={resource.name}>
+          <strong>{resource.name}</strong>
+        </ShareTitle>
+      </div>
+    </div>
+  ) : resource.kind === "GEYSER EXTENSION" ? (
     <div className="download-preview extension-preview">
       <img
         src={`${SITE_BASE_PATH}${resource.image}`}

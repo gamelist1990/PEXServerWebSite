@@ -14,6 +14,13 @@ export interface DownloadResource {
   releaseUrl?: string;
   tags: string[];
   note: string;
+  category?: string;
+  features?: {
+    title: string;
+    body: string;
+  }[];
+  installSteps?: string[];
+  warning?: string;
   links: {
     label: string;
     href: string;
@@ -22,5 +29,7 @@ export interface DownloadResource {
   }[];
 }
 export const downloadResources: DownloadResource[] = catalog.resources;
+export const resourceCategory = (resource: DownloadResource) =>
+  resource.category ?? "geyser";
 export const resourcePath = (resource: DownloadResource) =>
-  `/downloads/geyser/${resource.id}`;
+  `/downloads/${resourceCategory(resource)}/${resource.id}`;

@@ -68,5 +68,67 @@
         }
       ]
     }
+  },
+  {
+    "id": "dynamic-client",
+    "name": "DynamicClient",
+    "shareTitle": "DynamicClient — Bedrock向けクライアントMod (v1.26.65.1)",
+    "kind": "CLIENT MOD",
+    "description": "Minecraft Bedrock（Windows）向けのクライアントMod。Zoom・AutoSprint・TabList・Fullbright・Freecamを1つのDLLにまとめ、ゲーム内の設定画面からまとめて切り替えられます。",
+    "image": "ClientMod/dynamic-client.png",
+    "tags": [
+      "Bedrock",
+      "Client Mod",
+      "Windows x64"
+    ],
+    "eyebrow": "BEDROCK CLIENT MOD",
+    "note": "対応バージョンは Minecraft Bedrock 1.26.65.1（Windows）です。DLLの実体は BedrockDynamicSDK のリリースページで配布しています。",
+    "category": "client-mod",
+    "features": [
+      {
+        "title": "Zoom",
+        "body": "キーを押している間、視野を絞って遠くを拡大表示します。倍率は設定画面で調整できます。"
+      },
+      {
+        "title": "AutoSprint",
+        "body": "移動に合わせて自動でダッシュします。歩行とダッシュの切り替えを意識せずに移動できます。"
+      },
+      {
+        "title": "TabList",
+        "body": "参加者一覧を見やすいレイアウトで表示します。サーバーの参加状況をひと目で確認できます。"
+      },
+      {
+        "title": "Fullbright",
+        "body": "暗い場所でも明るく表示します。洞窟や夜間の視認性を上げます。"
+      },
+      {
+        "title": "Freecam",
+        "body": "カメラだけを自由に動かして周囲を確認できる機能です。使用前に下記の注意事項を必ず確認してください。"
+      }
+    ],
+    "installSteps": [
+      "BedrockDynamicSDK のリリースページから、対応バージョン（1.26.65.1）の DynamicClient DLL をダウンロードします。",
+      "Minecraft Bedrock（Windows）を起動し、DLL インジェクターで DynamicClient.dll をゲームプロセスへ注入します。",
+      "設定を開くと「Mod Menu」に DynamicClient が表示されます。表示されない場合は、一度プレイ画面を開いてタイトルに戻ってから設定を開いてください。",
+      "各機能のオン・オフや倍率は設定画面の DynamicClient ページから、キーの割り当てはキー設定画面下部の「Mod KeyBind」から変更できます。"
+    ],
+    "warning": "Freecam は、許可されていないサーバーで使用すると BAN される可能性があります。動作やアカウントへの影響について保証はしません。使用は自己責任で、許可された環境でのみ使ってください。",
+    "source": {
+      "type": "static",
+      "version": "1.26.65.1",
+      "releaseUrl": "https://github.com/gamelist1990/BedrockDynamicSDK/releases",
+      "links": [
+        {
+          "label": "リリースページでダウンロード ↗",
+          "href": "https://github.com/gamelist1990/BedrockDynamicSDK/releases",
+          "external": true
+        },
+        {
+          "label": "SDK リポジトリ",
+          "href": "https://github.com/gamelist1990/BedrockDynamicSDK",
+          "external": true
+        }
+      ]
+    }
   }
 ]

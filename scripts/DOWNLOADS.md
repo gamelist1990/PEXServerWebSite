@@ -19,4 +19,4 @@ npm run build
 npm run test:seo
 ```
 
-GitHub Releaseを持つ配布物は`github-release`、このリポジトリに置いたMCPACKは`local-pack`として登録します。配布物を追加すると一覧・詳細ページ・OGタグ・サイトマップも共通データから生成されます。
+GitHub Releaseを持つ配布物は`github-release`、このリポジトリに置いたMCPACKは`local-pack`として登録します。リリースページへのリンクだけを載せる配布物は`static`として登録し、バージョンとリンクを取得元設定に直接書きます（同期ではそのまま維持されます）。配布物を追加すると一覧・詳細ページ・OGタグ・サイトマップも共通データから生成されます。
