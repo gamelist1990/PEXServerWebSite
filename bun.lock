@@ -5,7 +5,7 @@
     "": {
       "name": "pexserver-website",
       "dependencies": {
-        "@pexserver/secure-envelope": "file:../pexsecure-envelope",
+        "@pexserver/secure-envelope": "file:./vendor/pexsecure-envelope",
         "react": "^19.2.5",
         "react-dom": "^19.2.5",
         "react-router-dom": "^7.14.1",
@@ -48,7 +48,7 @@
 
     "@oxc-project/types": ["@oxc-project/types@0.156.0", "", {}, "sha512-1Duyg48TdJNdyhEB8Xn1L36bT9Pv6GUtlKjHxOys8xkaF/rQq3XJE+bAurSK/AgIz5mGFsb77cn9Pb20+WCScw=="],
 
-    "@pexserver/secure-envelope": ["@pexserver/secure-envelope@file:../pexsecure-envelope", {}],
+    "@pexserver/secure-envelope": ["@pexserver/secure-envelope@file:vendor/pexsecure-envelope", {}],
 
     "@rolldown/binding-android-arm-eabi": ["@rolldown/binding-android-arm-eabi@1.2.19", "", { "os": "android", "cpu": "arm" }, "sha512-e+Ebe0WT+9tbXmNKPIiC8YrWAHYwug3m6i4p3rZGGulfZri1jtI4HslT+OZnFf/OIHowWF71DTlHwXBP2SiA7A=="],
 
